@@ -22,7 +22,7 @@ public class ConsultasProductos extends Conexion{
         Connection Con = getConexion();
         try {
             PreparedStatement PS;
-            String Sql = "insert into producto (idproducto, nombre, marca, preciounitario) values (?,?,?,?), insert into inventario (categoria, stock) values (?,?)";
+            String Sql = "insert into producto, inventario (idproductos, nombre, marca, precio unitario, stock, categoria) values (?,?,?,?,?,?)";
             PS = Con.prepareCall(Sql);
             PS.setInt(1, Modelo.getIdProductos());
             PS.setString(2, Modelo.getNombre());

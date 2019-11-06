@@ -31,6 +31,7 @@ public class ControladorUsuario implements MouseListener{
         
         oyentes();
         VistaLogin.setVisible(true); // el controlador hace visible al JFrame
+        VistaLogin.TxtPassword.setEchoChar((char)0);
     }
 
     private void oyentes() {
@@ -66,7 +67,17 @@ public class ControladorUsuario implements MouseListener{
                 
                }
              } 
-      }
+         }
+         if (me.getSource() == VistaLogin.TxtUsuario){
+             if (" Usuario...".equals(VistaLogin.TxtUsuario.getText())){
+                 VistaLogin.TxtUsuario.setText("");
+             }
+         }else if (me.getSource() == VistaLogin.TxtPassword){
+             if (" Contraseña".equals(VistaLogin.TxtPassword.getText())){
+                 VistaLogin.TxtPassword.setText("");
+                 VistaLogin.TxtPassword.setEchoChar('*');
+             }
+         }
       
         if (me.getSource() == VistaLogin.LblEye) {
             VistaLogin.LblEye.setIcon(VistaLogin.EyeOff);
