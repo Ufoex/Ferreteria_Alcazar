@@ -80,46 +80,46 @@ public class Compras extends JFrame {
         //Atributos ID Compras
         //Texto
         txtIdCompras.setFont(new Font("Tahoma",1,12));
-        txtIdCompras.setBounds(74,110,100,20);
+        txtIdCompras.setBounds(94,110,100,20);
         this.add(txtIdCompras);
         //Barra
-        idCompras.setBounds(145,110,120,20);
+        idCompras.setBounds(165,110,120,20);
         this.add(idCompras);
 
         //Atributos Precio Unitario
         //Texto
         txtPrecioUnitario.setFont(new Font("Tahoma",1,12));
-        txtPrecioUnitario.setBounds(49,140,110,20);
+        txtPrecioUnitario.setBounds(69,140,110,20);
         this.add(txtPrecioUnitario);
         //Barra
-        precioUnitario.setBounds(145,140,120,20);
+        precioUnitario.setBounds(165,140,120,20);
         this.add(precioUnitario);
 
         //Atributos Cantidad De Producto
         //Texto
         txtCantidadProducto.setFont(new Font("Tahoma",1,12));
-        txtCantidadProducto.setBounds(3,170,150,20);
+        txtCantidadProducto.setBounds(23,170,150,20);
         this.add(txtCantidadProducto);
         //Barra
-        cantidadProducto.setBounds(145,170,120,20);
+        cantidadProducto.setBounds(165,170,120,20);
         this.add(cantidadProducto);
 
         //Atributos Fecha
         //Texto
         txtFecha.setFont(new Font("Tahoma",1,12));
-        txtFecha.setBounds(105,200,80,20);
+        txtFecha.setBounds(125,200,80,20);
         this.add(txtFecha);
         //Barra
-        fecha.setBounds(145,200,120,20);
+        fecha.setBounds(165,200,120,20);
         this.add(fecha);
 
         //Atributos Total
         //Texto
         txtTotal.setFont(new Font("Tahoma",1,12));
-        txtTotal.setBounds(109,230,80,20);
+        txtTotal.setBounds(129,230,80,20);
         this.add(txtTotal);
         //Barra
-        total.setBounds(145,230,120,20);
+        total.setBounds(165,230,120,20);
         this.add(total);
     }
 

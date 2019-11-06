@@ -89,124 +89,124 @@ public class Proveedores extends JFrame {
     private void agregarProductos() {
         //Atributos de Texto Proveedores
         txtProveedores.setFont(new Font("Tahoma",0,36)); //Formato de la letra
-        txtProveedores.setBounds(35,30,200,36);       //Ubicacion y tamaño
+        txtProveedores.setBounds(55,30,200,36);       //Ubicacion y tamaño
         this.add(txtProveedores);
 
         //Atributos ID Proveedores
         //Texto
         txtIdProveedor.setFont(new Font("Tahoma",1,12));
-        txtIdProveedor.setBounds(31,110,120,20);
+        txtIdProveedor.setBounds(51,110,120,20);
         this.add(txtIdProveedor);
         //Barra
-        IdProveedor.setBounds(120,110,120,20);
+        IdProveedor.setBounds(140,110,120,20);
         this.add(IdProveedor);
 
         //Atributos Nombre
         //Texto
         txtNombre.setFont(new Font("Tahoma",1,12));
-        txtNombre.setBounds(65,140,80,20);
+        txtNombre.setBounds(85,140,80,20);
         this.add(txtNombre);
         //Barra
-        nombre.setBounds(120,140,120,20);
+        nombre.setBounds(140,140,120,20);
         this.add(nombre);
 
         //Atributos Apellido Paterno
         //Texto
         txtApellidoPaterno.setFont(new Font("Tahoma",1,12));
-        txtApellidoPaterno.setBounds(11,170,1200,20);
+        txtApellidoPaterno.setBounds(31,170,1200,20);
         this.add(txtApellidoPaterno);
         //Barra
-        apellidoPaterno.setBounds(120,170,120,20);
+        apellidoPaterno.setBounds(140,170,120,20);
         this.add(apellidoPaterno);
 
         //Atributos Apellido Materno
         //Texto
         txtApellidoMaterno.setFont(new Font("Tahoma",1,12));
-        txtApellidoMaterno.setBounds(9,200,120,20);
+        txtApellidoMaterno.setBounds(29,200,120,20);
         this.add(txtApellidoMaterno);
         //Barra
-        apellidoMaterno.setBounds(120,200,120,20);
+        apellidoMaterno.setBounds(140,200,120,20);
         this.add(apellidoMaterno);
 
         //Atributos RFC
         //Texto
         txtRfc.setFont(new Font("Tahoma",1,12));
-        txtRfc.setBounds(89,230,80,20);
+        txtRfc.setBounds(109,230,80,20);
         this.add(txtRfc);
         //Barra
-        rfc.setBounds(120,230,120,20);
+        rfc.setBounds(140,230,120,20);
         this.add(rfc);
 
         //Atributos Telefono
         //Texto
         txtTelefono.setFont(new Font("Tahoma",1,12));
-        txtTelefono.setBounds(59,260,80,20);
+        txtTelefono.setBounds(79,260,80,20);
         this.add(txtTelefono);
         //Barra
-        telefono.setBounds(120,260,120,20);
+        telefono.setBounds(140,260,120,20);
         this.add(telefono);
 
         //Atributos mail
         //Texto
         txtMail.setFont(new Font("Tahoma",1,12));
-        txtMail.setBounds(88,290,80,20);
+        txtMail.setBounds(108,290,80,20);
         this.add(txtMail);
         //Barra
-        mail.setBounds(120,290,120,20);
+        mail.setBounds(140,290,120,20);
         this.add(mail);
 
         //Atributos Estado
         //Texto
         txtEstado.setFont(new Font("Tahoma",1,12));
-        txtEstado.setBounds(70,320,80,20);
+        txtEstado.setBounds(90,320,80,20);
         this.add(txtEstado);
         //Barra
-        estado.setBounds(120,320,120,20);
+        estado.setBounds(140,320,120,20);
         this.add(estado);
 
         //Atributos Ciudad
         //Texto
         txtCiudad.setFont(new Font("Tahoma",1,12));
-        txtCiudad.setBounds(70,350,80,20);
+        txtCiudad.setBounds(90,350,80,20);
         this.add(txtCiudad);
         //Barra
-        ciudad.setBounds(120,350,120,20);
+        ciudad.setBounds(140,350,120,20);
         this.add(ciudad);
 
         //Atributos Codigo Postal
         //Texto
         txtCodigoPostal.setFont(new Font("Tahoma",1,12));
-        txtCodigoPostal.setBounds(28,380,120,20);
+        txtCodigoPostal.setBounds(48,380,120,20);
         this.add(txtCodigoPostal);
         //Barra
-        codigoPostal.setBounds(120,380,120,20);
+        codigoPostal.setBounds(140,380,120,20);
         this.add(codigoPostal);
 
         //Atributos Colonia
         //Texto
         txtColonia.setFont(new Font("Tahoma",1,12));
-        txtColonia.setBounds(67,410,80,20);
+        txtColonia.setBounds(87,410,80,20);
         this.add(txtColonia);
         //Barra
-        colonia.setBounds(120,410,120,20);
+        colonia.setBounds(140,410,120,20);
         this.add(colonia);
 
         //Atributos Calle
         //Texto
         txtCalle.setFont(new Font("Tahoma",1,12));
-        txtCalle.setBounds(87,440,80,20);
+        txtCalle.setBounds(107,440,80,20);
         this.add(txtCalle);
         //Barra
-        calle.setBounds(120,440,120,20);
+        calle.setBounds(140,440,120,20);
         this.add(calle);
 
         //Atributos Numero
         //Texto
         txtNumero.setFont(new Font("Tahoma",1,12));
-        txtNumero.setBounds(65,470,80,20);
+        txtNumero.setBounds(85,470,80,20);
         this.add(txtNumero);
         //Barra
-        numero.setBounds(120,470,120,20);
+        numero.setBounds(140,470,120,20);
         this.add(numero);
     }
 
