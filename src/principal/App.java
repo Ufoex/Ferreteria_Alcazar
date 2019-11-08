@@ -9,6 +9,8 @@ public class App {
 //        Splash TEST =new Splash();
         ControladorVistaMenu test = new ControladorVistaMenu();
         
+        System.out.println("hola prro!");
+        
         
     }
 }
