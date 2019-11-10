@@ -3,7 +3,7 @@
  */
 package vista;
 
-import java.awt.Color;
+import java.awt.*;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -52,6 +52,8 @@ public class VistaLogin extends JFrame {
         this.setLayout(null);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/imagenes/logo - copia.png")));
+
     }
 
     private void agregarComponentes() {

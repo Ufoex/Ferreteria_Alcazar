@@ -6,11 +6,9 @@ import vista.Splash;
 public class App {
     public static void main(String[] args) {
 
-//        Splash TEST =new Splash();
-        ControladorVistaMenu test = new ControladorVistaMenu();
-        
-        System.out.println("hola mundo, again");
-        
+        Splash TEST =new Splash();
+//        ControladorVistaMenu test = new ControladorVistaMenu();
+
         
     }
 }
