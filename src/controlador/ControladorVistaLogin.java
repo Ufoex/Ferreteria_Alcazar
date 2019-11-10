@@ -28,9 +28,8 @@ public class ControladorUsuario implements MouseListener{
     //
 
     public ControladorUsuario() {
-        
+        VistaLogin.setVisible(true);
         oyentes();
-        VistaLogin.setVisible(true); // el controlador hace visible al JFrame
         VistaLogin.TxtPassword.setEchoChar((char)0);
     }
 
