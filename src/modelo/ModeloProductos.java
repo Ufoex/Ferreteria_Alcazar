@@ -14,6 +14,7 @@ public class ModeloProductos {
     private float precioUnitario;
     private int stock;
     private String categoria;
+    
     //Cosntructor vacio
     public ModeloProductos() {
     }
@@ -28,8 +29,6 @@ public class ModeloProductos {
     }
 
     //Getters y Setters
-
-
     public int getIdProductos() {
         return idProductos;
     }

@@ -37,8 +37,22 @@ public class ControladorProductos {
         Productos.actualizar.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                llenarModeloConVista(); //Llena modelo o datos de vista
-                ConsultasProductos.modificar(ModeloProductos);
+                if(validarCampos()==false){
+                    JOptionPane.showMessageDialog(Productos,"Los campos no deben estar vacios");
+
+                }
+                else{
+                    llenarModeloConVista(); //Llena modelo o datos de vista
+                    if(ConsultasProductos.modificar(ModeloProductos)==true){
+                        JOptionPane.showMessageDialog(Productos, "Datos actualizados correctamente. ");
+                        limpiarCampos();
+                    }else{
+                        JOptionPane.showMessageDialog(Productos,"No se actualizaron los datos");
+
+                    }
+                }
+                
+                
             }
 
             @Override
@@ -74,7 +88,7 @@ public class ControladorProductos {
 
                 }
                 else{
-                    llenarVistaConModelo();
+                    llenarModeloConVista();
                     if(ConsultasProductos.insertar(ModeloProductos)==true){
                         JOptionPane.showMessageDialog(Productos, "Datos insertados correctamente. ");
                         limpiarCampos();
@@ -142,7 +156,20 @@ public class ControladorProductos {
         Productos.eliminar.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                if(Productos.idProductos.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(Productos,"El codigo no debe estar vacio");
 
+                }
+                else{
+                    llenarModeloConVista();
+                    if(ConsultasProductos.eliminar(ModeloProductos)==true){
+                        JOptionPane.showMessageDialog(Productos, "Datos eliminados correctamente. ");
+                        limpiarCampos();
+                    }else{
+                        JOptionPane.showMessageDialog(Productos,"No se eliminaron los datos");
+
+                    }
+                }
             }
 
             @Override
@@ -173,7 +200,7 @@ public class ControladorProductos {
             @Override
             public void mouseClicked(MouseEvent e) {
                 ConsultasProductos.buscar(ModeloProductos);
-                llenarModeloConVista();//***************************************
+                llenarVistaConModelo();//***************************************
                 ModeloProductos.setIdProductos(Integer.parseInt(Productos.idProductos.getText()));
                 ConsultasProductos.buscar(ModeloProductos);//******************************
                 llenarVistaConModelo();
