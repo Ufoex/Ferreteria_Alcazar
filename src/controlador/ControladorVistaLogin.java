@@ -2,6 +2,8 @@
 
  */
 package controlador;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.math.BigInteger;
@@ -18,54 +20,78 @@ import vista.VistaLogin;
  *
  * @author miria
  */
-public class ControladorUsuario implements MouseListener{
+public class ControladorVistaLogin implements MouseListener {
      // crear el Objeto modelo y el objeto vista
-    
+
     VistaLogin VistaLogin = new VistaLogin();
     ModeloUsuario ModeloUsuario = new ModeloUsuario();
     ConsultasUsuario ConsultasUsuario = new ConsultasUsuario();
-    
+
     //
 
-    public ControladorUsuario() {
+    public ControladorVistaLogin() {
         VistaLogin.setVisible(true);
+        VistaLogin.BtnLogin.requestFocus(); // Sirve para que se auto seleccione un boton o textfield (solo se selecciona pero no presiona)
+        VistaLogin.TxtUsuario.setFocusTraversalKeysEnabled(false); //Sirve para que se desabiliten las funciones preterminadas de TAB, SHIFT, etc y puedan funcionar en el KeyListener
         oyentes();
         VistaLogin.TxtPassword.setEchoChar((char)0);
     }
 
     private void oyentes() {
-        
+
         VistaLogin.CbRecuerdame.addMouseListener(this);
         VistaLogin.BtnLogin.addMouseListener(this);
         VistaLogin.LblEye.addMouseListener(this);
         VistaLogin.TxtPassword.addMouseListener(this);
         VistaLogin.TxtUsuario.addMouseListener(this);
         VistaLogin.BtnCerrar.addMouseListener(this);
-        
+
+        VistaLogin.TxtUsuario.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if (e.getKeyChar()== KeyEvent.VK_TAB || e.getKeyChar()==e.VK_ENTER) {
+                    VistaLogin.TxtPassword.setText("");
+                    VistaLogin.TxtPassword.setEchoChar('*');
+                    VistaLogin.TxtPassword.requestFocus();
+                }
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
+
     }
+
 
     @Override
     public void mouseClicked(MouseEvent me) {
-        
+
          if (me.getSource() == VistaLogin.BtnLogin){
              if (validarCampos() ==  false) {
-                 JOptionPane.showMessageDialog(null, "Se deben llenar los campos", "Alerta", JOptionPane.WARNING_MESSAGE);            
+                 JOptionPane.showMessageDialog(null, "Se deben llenar los campos", "Alerta", JOptionPane.WARNING_MESSAGE);
              }else{try {
                  //los campos vacios
                  LlenarDatosDeModelo();
                  } catch (NoSuchAlgorithmException ex) {
-                     Logger.getLogger(ControladorUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                     Logger.getLogger(ControladorVistaLogin.class.getName()).log(Level.SEVERE, null, ex);
                  }
                 if (ConsultasUsuario.buscar(ModeloUsuario) == false){
-                JOptionPane.showMessageDialog(null, "Nombre de usuario o contraseña incorrectos" );          
+                JOptionPane.showMessageDialog(null, "Nombre de usuario o contraseña incorrectos" );
                 }else{
                 JOptionPane.showMessageDialog(null, "Bienvenid@ al Sistema " +ModeloUsuario.getNombre(),ModeloUsuario.getUsuario(),1);
-                
+
                 ControladorVistaMenu ControladorPantallaPrincipal = new ControladorVistaMenu();
                 this.VistaLogin.dispose();
-                
+
                }
-             } 
+             }
          }
          if (me.getSource() == VistaLogin.TxtUsuario){
              if (" Usuario...".equals(VistaLogin.TxtUsuario.getText())){
@@ -77,36 +103,36 @@ public class ControladorUsuario implements MouseListener{
                  VistaLogin.TxtPassword.setEchoChar('*');
              }
          }
-      
+
         if (me.getSource() == VistaLogin.LblEye) {
             VistaLogin.LblEye.setIcon(VistaLogin.EyeOff);
             VistaLogin.TxtPassword.setEchoChar('*');
         }
-        
+
         if(me.getSource()==VistaLogin.BtnCerrar){
             int opc = JOptionPane.showConfirmDialog(null, "¿Seguro que desea salir del sistema?", "Confirmar salida", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (opc == JOptionPane.YES_OPTION) {
                 System.exit(0);
-               
-                
-                
-            }  
-        }     
+
+
+
+            }
+        }
     }
-    
-    
+
+
 
     @Override
     public void mousePressed(MouseEvent me) {
         if (me.getSource() == VistaLogin.LblEye) {
             VistaLogin.LblEye.setIcon(VistaLogin.Eye);
             VistaLogin.TxtPassword.setEchoChar((char)0);
-        }        
+        }
     }
 
     @Override
     public void mouseReleased(MouseEvent me) {
-        
+
     }
 
     @Override
@@ -116,6 +142,7 @@ public class ControladorUsuario implements MouseListener{
     @Override
     public void mouseExited(MouseEvent e) {
     }
+
 
     private void LlenarDatosDeModelo() throws NoSuchAlgorithmException {
         
@@ -147,7 +174,8 @@ public class ControladorUsuario implements MouseListener{
         Md.update(SinEncriptar.getBytes(),0,SinEncriptar.length());
         return new BigInteger(1,Md.digest()).toString(16);  
     }
-    
+
+
 }
 
 

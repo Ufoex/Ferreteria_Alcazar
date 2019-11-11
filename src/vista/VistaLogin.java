@@ -50,7 +50,6 @@ public class VistaLogin extends JFrame {
         this.getContentPane().setBackground(new Color (247, 222, 181));
         this.setSize(500, 480);
         this.setLayout(null);
-        this.setVisible(true);
         this.setLocationRelativeTo(null);
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/imagenes/logo - copia.png")));
 
@@ -78,7 +77,6 @@ public class VistaLogin extends JFrame {
         this.TxtPassword.setCaretColor(Color.WHITE);
         this.TxtPassword.setBackground(new Color(54,54,54));
         this.add(TxtPassword);
-
         //Texto
         this.LblPassword.setBounds(127, 272, 24, 24);
         this.LblPassword.setVisible(true);

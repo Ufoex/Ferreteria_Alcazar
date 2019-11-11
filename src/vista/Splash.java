@@ -3,7 +3,7 @@ Imagen de arranque en movimiento
  */
 package vista;
 
-import controlador.ControladorUsuario;
+import controlador.ControladorVistaLogin;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -107,10 +107,7 @@ public class Splash extends JFrame implements MouseListener, MouseMotionListener
             Logger.getLogger(Splash.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.dispose();//Liberando memoria (cierra el Splash).
-        
-        
-        ControladorUsuario controlador = new ControladorUsuario();
-        
+        ControladorVistaLogin controlador = new ControladorVistaLogin();
     }
     
 }

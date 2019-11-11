@@ -171,7 +171,7 @@ public class Ventas extends JFrame {
         //Atributos Salir
         this.add(salir);
         salir.setVisible(true);
-        salir.setBounds(834,5,48,48);
+        salir.setBounds(835,4,48,48);
         this.salir.setOpaque(false);
         this.salir.setBorder(null);
         salir.setContentAreaFilled(false);
