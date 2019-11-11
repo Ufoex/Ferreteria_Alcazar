@@ -4,11 +4,13 @@ import vista.Ventas;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-public class ControladorVentas {
+public class ControladorVentas implements KeyListener{
     //Sirven para agregar  las vistas y los controladores por separado
     Ventas Ventas = new Ventas();
 
@@ -18,6 +20,13 @@ public class ControladorVentas {
     public ControladorVentas(){
         agregarListener();
         Ventas.setVisible(true);
+         //oyentes para el teclado
+        Ventas.IdProducto.addKeyListener(this);
+        Ventas.fecha.addKeyListener(this);
+        Ventas.cantidad.addKeyListener(this);
+        Ventas.precio.addKeyListener(this);
+        Ventas.total.addKeyListener(this);
+
     }
 
     private void agregarListener() {
@@ -262,5 +271,37 @@ public class ControladorVentas {
         //Deja el cursor en el primer campo
         Ventas.IdProducto.requestFocus();
 
+    }
+  //Funciones del teclado: al dar enter pasar al siguiente campo
+    @Override
+    public void keyTyped(KeyEvent ke) {
+             if(ke.getSource()==Ventas.IdProducto){
+            if(ke.getKeyChar()==ke.VK_ENTER){ 
+                Ventas.fecha.requestFocus();
+                } 
+            }else if(ke.getSource()==Ventas.fecha){
+            if(ke.getKeyChar()==ke.VK_ENTER){ 
+             Ventas.cantidad.requestFocus();
+                }
+            }else if(ke.getSource()==Ventas.cantidad){
+            if(ke.getKeyChar()==ke.VK_ENTER){ 
+             Ventas.precio.requestFocus();
+                }
+            }else if(ke.getSource()==Ventas.precio){
+            if(ke.getKeyChar()==ke.VK_ENTER){ 
+             Ventas.total.requestFocus(); 
+                }
+            }else if (ke.getSource()==Ventas.IdProducto){
+            if(ke.getKeyChar()==ke.VK_ENTER){ 
+            }
+        }   
+    }
+
+    @Override
+    public void keyPressed(KeyEvent ke) {
+    }
+
+    @Override
+    public void keyReleased(KeyEvent ke) {
     }
 }
