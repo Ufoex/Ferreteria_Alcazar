@@ -3,7 +3,8 @@ package vista;
 import javax.swing.*;
 import java.awt.*;
 
-public class Productos extends JFrame {
+
+public class Productos extends JFrame{
 //    Objetos
 
     //Fondo
@@ -36,6 +37,7 @@ public class Productos extends JFrame {
 
     // Para Mover la ventana
     int x,y;
+
 
     public Productos(){
         configInicial();
