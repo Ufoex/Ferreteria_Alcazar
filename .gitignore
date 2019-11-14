@@ -2,4 +2,6 @@
 out
 Ferreteria_Alcazar.iml
 build
+manifest.mf
+build.xml
 /dist/
