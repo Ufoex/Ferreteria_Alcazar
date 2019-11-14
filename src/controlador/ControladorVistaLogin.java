@@ -11,14 +11,14 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
+import javax.swing.*;
+
 import modelo.ConsultasUsuario;
 import modelo.ModeloUsuario;
 import vista.VistaLogin;
 
 /**
  *
- * @author miria
  */
 public class ControladorVistaLogin implements MouseListener {
      // crear el Objeto modelo y el objeto vista
@@ -26,8 +26,8 @@ public class ControladorVistaLogin implements MouseListener {
     VistaLogin VistaLogin = new VistaLogin();
     ModeloUsuario ModeloUsuario = new ModeloUsuario();
     ConsultasUsuario ConsultasUsuario = new ConsultasUsuario();
-
-    //
+    //Bandera para saber si escribio mal un usuario o no ha puesto usuario
+    int bandera=0;
 
     public ControladorVistaLogin() {
         VistaLogin.setVisible(true);
@@ -35,6 +35,10 @@ public class ControladorVistaLogin implements MouseListener {
         VistaLogin.TxtUsuario.setFocusTraversalKeysEnabled(false); //Sirve para que se desabiliten las funciones preterminadas de TAB, SHIFT, etc y puedan funcionar en el KeyListener
         oyentes();
         VistaLogin.TxtPassword.setEchoChar((char)0);
+        //Sirve Para que el boton login sea el default
+        JRootPane rootPane = SwingUtilities.getRootPane(VistaLogin.BtnLogin);
+        rootPane.setDefaultButton(VistaLogin.BtnLogin);
+
     }
 
     private void oyentes() {
@@ -67,6 +71,26 @@ public class ControladorVistaLogin implements MouseListener {
             }
         });
 
+        //Sirve para que al precionar Enter se le de click al boton
+        VistaLogin.TxtPassword.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if (e.getKeyChar()== KeyEvent.VK_ENTER){
+                    ClickBotonUsuario();
+                }
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
+
     }
 
 
@@ -74,24 +98,7 @@ public class ControladorVistaLogin implements MouseListener {
     public void mouseClicked(MouseEvent me) {
 
          if (me.getSource() == VistaLogin.BtnLogin){
-             if (validarCampos() ==  false) {
-                 JOptionPane.showMessageDialog(null, "Se deben llenar los campos", "Alerta", JOptionPane.WARNING_MESSAGE);
-             }else{try {
-                 //los campos vacios
-                 LlenarDatosDeModelo();
-                 } catch (NoSuchAlgorithmException ex) {
-                     Logger.getLogger(ControladorVistaLogin.class.getName()).log(Level.SEVERE, null, ex);
-                 }
-                if (ConsultasUsuario.buscar(ModeloUsuario) == false){
-                JOptionPane.showMessageDialog(null, "Nombre de usuario o contraseña incorrectos" );
-                }else{
-                JOptionPane.showMessageDialog(null, "Bienvenid@ al Sistema " +ModeloUsuario.getNombre(),ModeloUsuario.getUsuario(),1);
-
-                ControladorVistaMenu ControladorPantallaPrincipal = new ControladorVistaMenu();
-                this.VistaLogin.dispose();
-
-               }
-             }
+             ClickBotonUsuario();
          }
          if (me.getSource() == VistaLogin.TxtUsuario){
              if (" Usuario...".equals(VistaLogin.TxtUsuario.getText())){
@@ -143,7 +150,6 @@ public class ControladorVistaLogin implements MouseListener {
     public void mouseExited(MouseEvent e) {
     }
 
-
     private void LlenarDatosDeModelo() throws NoSuchAlgorithmException {
         
         // llenal el modelo con los datos del formulario 
@@ -153,7 +159,7 @@ public class ControladorVistaLogin implements MouseListener {
         String Pas = new String(VistaLogin.TxtPassword.getPassword());
         
         //solo para ver cual es el usuario incriptado
-        System.out.println(encriptarPassword(Pas));
+        //System.out.println(encriptarPassword(Pas));
         
         ModeloUsuario.setPassword(encriptarPassword(Pas));
         
@@ -173,6 +179,36 @@ public class ControladorVistaLogin implements MouseListener {
         MessageDigest Md = MessageDigest.getInstance("MD5");
         Md.update(SinEncriptar.getBytes(),0,SinEncriptar.length());
         return new BigInteger(1,Md.digest()).toString(16);  
+    }
+
+    private void ClickBotonUsuario(){
+        bandera=0;
+        if (validarCampos() ==  false) {
+            JOptionPane.showMessageDialog(null, "Se deben llenar los campos", "Alerta", JOptionPane.WARNING_MESSAGE);
+        }else{try {
+            //los campos vacios
+            LlenarDatosDeModelo();
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(ControladorVistaLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+            if (VistaLogin.TxtUsuario.getText().equals(" Usuario...") || VistaLogin.TxtPassword.getText().equals(" Contraseña")) {
+                bandera=1;
+            }
+
+            if (bandera==1) {
+                JOptionPane.showMessageDialog(null, "Escriba un Usuario y su Contraseña" );
+            }else {
+                if (ConsultasUsuario.buscar(ModeloUsuario) == false) {
+                    JOptionPane.showMessageDialog(null, "Nombre de usuario o contraseña incorrectos");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Bienvenid@ al Sistema " + ModeloUsuario.getNombre(), ModeloUsuario.getUsuario(), 1);
+                    ControladorVistaMenu ControladorPantallaPrincipal = new ControladorVistaMenu();
+                    this.VistaLogin.dispose();
+
+                }
+            }
+        }
     }
 
 

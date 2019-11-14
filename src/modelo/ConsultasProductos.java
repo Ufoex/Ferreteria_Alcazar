@@ -13,7 +13,6 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 /**
  *
- * @author miria
  */
 public class ConsultasProductos extends Conexion{
     //todas las consultas deben ser de tipo boolean para saber si estan bien o no, con el true o false

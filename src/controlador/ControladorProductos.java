@@ -15,11 +15,9 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import vista.TablaProducto;
 
 /**
  *
- * @author
  */
 public class ControladorProductos implements KeyListener{
     //Sirven para agregar las vistas y los controladores por separado
