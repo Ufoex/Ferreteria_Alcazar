@@ -14,7 +14,7 @@ public class Conexion {
         //Datos necesarios que cambian de acuerdo a las necesidades de la aplicación
         //Cuan la comunicacion es lo local (LOCALHOST)
     private final String Servidor = "localhost"; //si es local = "localhost" 127.0.0.1
-    private final String Database = "ferreteria";
+    private final String Database = "ferreteriaalcazar";
     private final String Usuario = "root"; //si el servidor es con localhost = root
     private final String Password = ""; //si el servidor es con localhost = ""
 
