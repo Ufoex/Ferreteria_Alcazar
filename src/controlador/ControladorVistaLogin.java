@@ -90,6 +90,25 @@ public class ControladorVistaLogin implements MouseListener {
             }
         });
 
+        VistaLogin.BtnLogin.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if (e.getKeyChar()== KeyEvent.VK_ENTER){
+                    ClickBotonUsuario();
+                }
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
+
     }
 
 
