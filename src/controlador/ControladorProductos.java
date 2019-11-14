@@ -10,15 +10,18 @@ import javax.swing.*;
 import modelo.ConsultasProductos;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import vista.TablaProducto;
 
 /**
  *
  * @author
  */
-public class ControladorProductos {
+public class ControladorProductos implements KeyListener{
     //Sirven para agregar las vistas y los controladores por separado
     Productos Productos = new Productos();//Cambiar a mayuscula
     ModeloProductos ModeloProductos = new ModeloProductos();
@@ -30,6 +33,14 @@ public class ControladorProductos {
     public ControladorProductos() {
         agregarListener();
         Productos.setVisible(true);
+          //oyentes para el teclado
+        Productos.idProductos.addKeyListener(this);
+        Productos.nombre.addKeyListener(this);
+        Productos.marca.addKeyListener(this);
+        Productos.precioUnitario.addKeyListener(this);
+        Productos.stock.addKeyListener(this);
+        Productos.categoria.addKeyListener(this);
+               
     }
 
     private void agregarListener() {
@@ -199,10 +210,8 @@ public class ControladorProductos {
         Productos.buscar.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                ConsultasProductos.buscar(ModeloProductos);
-                llenarVistaConModelo();//***************************************
-                ModeloProductos.setIdProductos(Integer.parseInt(Productos.idProductos.getText()));
-                ConsultasProductos.buscar(ModeloProductos);//******************************
+                ControladorBuscarProducto VentBuscar = new ControladorBuscarProducto(ModeloProductos);
+                //llenar la vista con el modelo
                 llenarVistaConModelo();
             }
 
@@ -333,6 +342,7 @@ public class ControladorProductos {
     }
 
     private void llenarVistaConModelo() {
+        Productos.idProductos.setText(ModeloProductos.getIdProductos() +"");
         Productos.nombre.setText(ModeloProductos.getNombre());
         Productos.marca.setText(ModeloProductos.getMarca());
         Productos.precioUnitario.setText(ModeloProductos.getPrecioUnitario()+"");
@@ -343,6 +353,7 @@ public class ControladorProductos {
 
    
 
+    
     private boolean validarCampos(){
         if (Productos.idProductos.getText().isEmpty() ||
                 Productos.nombre.getText().isEmpty() ||
@@ -355,6 +366,42 @@ public class ControladorProductos {
         else{
             return true; //todos los campos estan llenos
         }
+    }
+
+    @Override
+    public void keyTyped(KeyEvent ke) {
+          if(ke.getSource()==Productos.idProductos){
+            if(ke.getKeyChar()==ke.VK_ENTER){ 
+                Productos.nombre.requestFocus();
+                } 
+            }else if(ke.getSource()==Productos.nombre){
+            if(ke.getKeyChar()==ke.VK_ENTER){ 
+            Productos.marca.requestFocus();
+                }
+            }else if(ke.getSource()==Productos.marca){
+            if(ke.getKeyChar()==ke.VK_ENTER){ 
+             Productos.precioUnitario.requestFocus();
+                }
+            }else if(ke.getSource()==Productos.precioUnitario){
+            if(ke.getKeyChar()==ke.VK_ENTER){ 
+             Productos.stock.requestFocus(); 
+                }
+            }else if(ke.getSource()==Productos.stock){
+            if(ke.getKeyChar()==ke.VK_ENTER){ 
+             Productos.categoria.requestFocus(); 
+                }
+            }else if (ke.getSource()==Productos.idProductos){
+            if(ke.getKeyChar()==ke.VK_ENTER){ 
+            }
+        } 
+    }
+
+    @Override
+    public void keyPressed(KeyEvent ke) {
+    }
+
+    @Override
+    public void keyReleased(KeyEvent ke) {
     }
 
 
