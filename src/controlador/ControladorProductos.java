@@ -14,7 +14,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 
 /**
  *
@@ -24,9 +23,6 @@ public class ControladorProductos implements KeyListener{
     Productos Productos = new Productos();//Cambiar a mayuscula
     ModeloProductos ModeloProductos = new ModeloProductos();
     ConsultasProductos ConsultasProductos = new ConsultasProductos();
-
-    //Sirve para poder mover la ventana
-    int x,y;
 
     public ControladorProductos() {
         agregarListener();
@@ -271,47 +267,7 @@ public class ControladorProductos implements KeyListener{
             }
         });
 
-        //Sirven para poder mover la ventana con el Listener y el MotionListener
-        Productos.imgFondo.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
 
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-                x = e.getX();
-                y = e.getY();
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-
-            }
-        });
-
-        //Los listener del Mouse para cuando deje precionado el Mouse
-        Productos.imgFondo.addMouseMotionListener(new MouseMotionListener() {
-            @Override
-            public void mouseDragged(MouseEvent e) {
-                Productos.setLocation(Productos.getLocation().x+e.getX()-x, Productos.getLocation().y+e.getY()-y);
-            }
-
-            @Override
-            public void mouseMoved(MouseEvent e) {
-
-            }
-        });
     }
 
     private void limpiarCampos() {

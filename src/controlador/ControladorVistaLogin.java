@@ -43,7 +43,6 @@ public class ControladorVistaLogin implements MouseListener {
 
     private void oyentes() {
 
-        VistaLogin.CbRecuerdame.addMouseListener(this);
         VistaLogin.BtnLogin.addMouseListener(this);
         VistaLogin.LblEye.addMouseListener(this);
         VistaLogin.TxtPassword.addMouseListener(this);

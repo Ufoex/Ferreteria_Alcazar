@@ -115,9 +115,11 @@ public class ControladorBuscarProducto extends JFrame implements MouseListener, 
     private void centrarVentana() {
         //Para hacer que la ventana siempre salga a la mitad de la pantalla
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-        int x = (int) ((dimension.getWidth() - this.getWidth()) / 2+50);
-        int y = (int) ((dimension.getHeight() - this.getHeight()) /2+50);
-        this.setLocation(x, y);
+        int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);
+        int y = (int) ((dimension.getHeight() - this.getHeight()) /2);
+        x = x-190;
+        y = y-180;
+        TablaProducto.setLocation(x, y);
     }
         
 }

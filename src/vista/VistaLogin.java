@@ -30,8 +30,6 @@ public class VistaLogin extends JFrame {
     JLabel LblPassword = new JLabel(new ImageIcon(getClass().getResource("/imagenes/password.png")));
     public JLabel LblEye = new JLabel(Eye);
     JLabel LblLogin = new JLabel("Login");
-    JLabel LblRecuerdame = new JLabel ("Recuerdame");
-    public JCheckBox CbRecuerdame = new JCheckBox();
 
     //Botones
     public JButton BtnLogin = new JButton(new ImageIcon(getClass().getResource("/imagenes/login.png")));
@@ -83,7 +81,7 @@ public class VistaLogin extends JFrame {
         this.add(LblPassword);
 
         //Boton de Ojo mostrar
-        this.LblEye.setBounds(127, 310, 24, 26);
+        this.LblEye.setBounds(355, 272, 24, 26);
         this.LblEye.setVisible(true);
         this.add(LblEye);
 
@@ -97,16 +95,6 @@ public class VistaLogin extends JFrame {
         LblLogin.setBounds(285, 310, 50, 24);
         this.LblLogin.setVisible(true);
         this.add(LblLogin);
-
-        //Boton de Recuerdame
-        //Texto
-        this.LblRecuerdame.setBounds(155, 310, 100, 24);
-        this.LblRecuerdame.setVisible(true);
-        this.add(LblRecuerdame);
-        //Boton Recuerdame
-        this.CbRecuerdame.setBounds(230, 310, 17, 17);
-        this.CbRecuerdame.setVisible(true);
-        this.add(CbRecuerdame);
 
         //Boton Salir
         BtnCerrar.setBounds(432, 10, 48, 48);

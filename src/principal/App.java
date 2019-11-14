@@ -1,5 +1,6 @@
 package principal;
 
+import controlador.ControladorProductos;
 import controlador.ControladorVistaMenu;
 import vista.Splash;
 
@@ -8,9 +9,7 @@ public class App {
 
         Splash TEST =new Splash();
 //        ControladorVistaMenu test = new ControladorVistaMenu();
-        
-        System.out.println("hola");
-
+//        ControladorProductos productos = new ControladorProductos();
         
     }
 }
