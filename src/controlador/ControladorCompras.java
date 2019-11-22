@@ -4,16 +4,19 @@ import vista.Compras;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import modelo.ConsultasCompras;
+import modelo.ModeloCompras;
 
-public class ControladorCompras {
+public class ControladorCompras implements KeyListener{
     //Sirven para agregar  las vistas y los controladores por separado
     Compras Compras = new Compras();
-
-    //Sirve para poder mover la ventana
-    int x,y;
+    ModeloCompras ModeloCompras = new ModeloCompras();
+    ConsultasCompras ConsultasCompras = new ConsultasCompras();
 
     public ControladorCompras(){
         agregarListener();
@@ -25,8 +28,20 @@ public class ControladorCompras {
         Compras.actualizar.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                //llenarModeloConVista(); //Llena modelo o datos de vista
-                //ConsultasProveedores.modificar(ModeloProveedores);
+                 if(validarCampos()==false){
+                    JOptionPane.showMessageDialog(Compras,"Los campos no deben estar vacios");
+
+                }
+                else{
+                    llenarModeloConVista(); //Llena modelo o datos de vista
+                    if(ConsultasCompras.actualizar(ModeloCompras)==true){
+                        JOptionPane.showMessageDialog(Compras, "Datos actualizados correctamente. ");
+                        limpiarCampos();
+                    }else{
+                        JOptionPane.showMessageDialog(Compras,"No se actualizaron los datos");
+
+                    }
+                }
             }
 
             @Override
@@ -57,6 +72,17 @@ public class ControladorCompras {
         Compras.guardar.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                if (validarCampos() == false) {
+                    JOptionPane.showMessageDialog(Compras,"Los campos no deben estar vacios");
+                }else{
+                    llenarModeloConVista();
+                    if (ConsultasCompras.insertar(ModeloCompras) == true) {
+                      JOptionPane.showMessageDialog(Compras,"Datos insertados correctamente");
+                      limpiarCampos();
+                    }else{
+                        JOptionPane.showMessageDialog(Compras,"No se insertaron datos");
+                    }
+                }
 
             }
 
@@ -117,7 +143,17 @@ public class ControladorCompras {
         Compras.eliminar.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+                if (Compras.idCompras.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(Compras,"El código no debe de estar vacío");
+                }else{
+                    llenarModeloConVista();
+                    if (ConsultasCompras.eliminar(ModeloCompras) == true) {
+                        JOptionPane.showMessageDialog(Compras,"Datos eliminados correctamente. ");
+                        limpiarCampos();
+                    }else{
+                        JOptionPane.showMessageDialog(Compras,"No se eliminaron los datos");
+                    }
+                }
             }
 
             @Override
@@ -143,41 +179,14 @@ public class ControladorCompras {
             }
         });
 
-        //Listeners del Boton Cancelar
-        Compras.cancelar.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-                Compras.cancelar.setIcon(new ImageIcon(getClass().getResource("/imagenes/cancelarSelect.png.png")));
-            }
-
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                Compras.cancelar.setIcon(new ImageIcon(getClass().getResource("/imagenes/cancelar.png.png")));
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                Compras.cancelar.setIcon(new ImageIcon(getClass().getResource("/imagenes/cancelarEntered.png")));
-                Compras.cancelar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                Compras.cancelar.setIcon(new ImageIcon(getClass().getResource("/imagenes/cancelar.png")));
-            }
-        });
-
-        //Listeners del Botón Buscar
+        
+         //Listeners del Botón Buscar
         Compras.buscar.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+                ControladorBuscarCompras VentBuscar = new ControladorBuscarCompras(ModeloCompras);
+                //llenar la vista con el modelo
+                llenarVistaConModelo();
             }
 
             @Override
@@ -237,51 +246,9 @@ public class ControladorCompras {
                 Compras.salir.setIcon(new ImageIcon(getClass().getResource("/imagenes/clickSalir.png")));
             }
         });
-
-        //Sirven para poder mover la ventana con el Listener y el MotionListener
-        Compras.imgFondo.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-                x = e.getX();
-                y = e.getY();
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-
-            }
-        });
-
-        //Los listener del Mouse para cuando deje precionado el Mouse
-        Compras.imgFondo.addMouseMotionListener(new MouseMotionListener() {
-            @Override
-            public void mouseDragged(MouseEvent e) {
-                Compras.setLocation(Compras.getLocation().x+e.getX()-x, Compras.getLocation().y+e.getY()-y);
-            }
-
-            @Override
-            public void mouseMoved(MouseEvent e) {
-
-            }
-        });
     }
-
-    private void limpiarCampos() {
+    
+     private void limpiarCampos() {
         Compras.idCompras.setText("");
         Compras.precioUnitario.setText("");
         Compras.cantidadProducto.setText("");
@@ -293,4 +260,66 @@ public class ControladorCompras {
         Compras.idCompras.requestFocus();
 
     }
+     private boolean validarCampos(){
+         if (Compras.idCompras.getText().isEmpty()||
+                 Compras.precioUnitario.getText().isEmpty()||
+                 Compras.cantidadProducto.getText().isEmpty()||
+                 Compras.fecha.getText().isEmpty()) {
+             return false;// algun os campos estan vacios
+         }else{
+             return true;// todos los campos estan llenos
+         }
+     }
+     private void llenarModeloConVista(){
+         ModeloCompras.setIdCompras(Integer.parseInt(Compras.idCompras.getText()));
+         ModeloCompras.setPrecioUnitario(Float.parseFloat(Compras.precioUnitario.getText()));
+         ModeloCompras.setCantidad(Float.parseFloat(Compras.cantidadProducto.getText()));
+         ModeloCompras.setFecha(Compras.fecha.getText());
+         ModeloCompras.setTotal(Double.parseDouble(Compras.total.getText()));
+     }
+     
+     private void llenarVistaConModelo(){
+         Compras.idCompras.setText(ModeloCompras.getIdCompras()+"");
+         Compras.precioUnitario.setText(ModeloCompras.getPrecioUnitario()+"");
+         Compras.cantidadProducto.setText(ModeloCompras.getCantidad()+"");
+         Compras.fecha.setText(ModeloCompras.getFecha()+"");
+         Compras.total.setText(ModeloCompras.getTotal()+"");
+     }
+        //Funciones del teclado: al dar enter pasar al siguiente campo
+    @Override
+    public void keyTyped(KeyEvent e) { if(e.getSource()==Compras.idCompras){
+            if(e.getKeyChar()==e.VK_ENTER){ 
+                Compras.precioUnitario.requestFocus();
+                } 
+            }else if(e.getSource()==Compras.precioUnitario){
+            if(e.getKeyChar()==e.VK_ENTER){ 
+             Compras.cantidadProducto.requestFocus();
+                }
+            }else if(e.getSource()==Compras.cantidadProducto){
+            if(e.getKeyChar()==e.VK_ENTER){ 
+             Compras.fecha.requestFocus();
+                }
+            }else if(e.getSource()==Compras.fecha){
+            if(e.getKeyChar()==e.VK_ENTER){ 
+             Compras.total.requestFocus(); 
+                }
+            }else if(e.getSource()==Compras.total){
+            if(e.getKeyChar()==e.VK_ENTER){ 
+             Compras.idCompras.requestFocus(); 
+                }
+            }else if (e.getSource()==Compras.idCompras){
+            if(e.getKeyChar()==e.VK_ENTER){  /////////7**************
+            }
+        }   
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+    }
+     
+  
 }

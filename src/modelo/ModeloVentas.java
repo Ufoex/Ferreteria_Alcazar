@@ -8,32 +8,33 @@ package modelo;
  * @author Partida Castañeda
  */
 public class ModeloVentas {
-      public int idcodigo;
+    public int IdVentas;
     public String Fecha;
     public  int cantidad;
     public float precio;
     public float total;
+    public int IdProducto;
     //constructor vacio
 
     public ModeloVentas() {
     }
     //contructor con campos necesarios
-
-    public ModeloVentas(int idcodigo, String Fecha, int cantidad, float precio, float total) {
-        this.idcodigo = idcodigo;
+    public ModeloVentas(int IdVentas, String Fecha, int cantidad, float precio, float total, int IdProducto) {
+        this.IdVentas = IdVentas;
         this.Fecha = Fecha;
         this.cantidad = cantidad;
         this.precio = precio;
         this.total = total;
+        this.IdProducto = IdProducto;
     }
     //getters y setters 
 
-    public int getIdcodigo() {
-        return idcodigo;
+    public int getIdVentas() {
+        return IdVentas;
     }
 
-    public void setIdcodigo(int idcodigo) {
-        this.idcodigo = idcodigo;
+    public void setIdVentas(int IdVentas) {
+        this.IdVentas = IdVentas;
     }
 
     public String getFecha() {
@@ -67,7 +68,15 @@ public class ModeloVentas {
     public void setTotal(float total) {
         this.total = total;
     }
+
+    public int getIdProducto() {
+        return IdProducto;
+    }
+
+    public void setIdProducto(int IdProducto) {
+        this.IdProducto = IdProducto;
+    }
     
-    
+
     
 }

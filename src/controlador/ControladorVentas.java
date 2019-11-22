@@ -9,23 +9,25 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import modelo.ConsultasVentas;
+import modelo.ModeloVentas;
 
 public class ControladorVentas implements KeyListener{
     //Sirven para agregar  las vistas y los controladores por separado
     Ventas Ventas = new Ventas();
-
-    //Sirve para poder mover la ventana
-    int x,y;
+    ModeloVentas ModeloVentas = new ModeloVentas();
+    ConsultasVentas ConsultasVentas = new ConsultasVentas();
 
     public ControladorVentas(){
         agregarListener();
         Ventas.setVisible(true);
          //oyentes para el teclado
-        Ventas.IdProducto.addKeyListener(this);
+        Ventas.IdVentas.addKeyListener(this);
         Ventas.fecha.addKeyListener(this);
         Ventas.cantidad.addKeyListener(this);
         Ventas.precio.addKeyListener(this);
         Ventas.total.addKeyListener(this);
+        Ventas.IdProducto.addKeyListener(this);
 
     }
 
@@ -34,8 +36,20 @@ public class ControladorVentas implements KeyListener{
         Ventas.actualizar.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                //llenarModeloConVista(); //Llena modelo o datos de vista
-                //ConsultasProveedores.modificar(ModeloProveedores);
+                 if(validarCampos()==false){
+                    JOptionPane.showMessageDialog(Ventas,"Los campos no deben estar vacios");
+
+                   }
+                else{
+                    llenarModeloConVista(); //Llena modelo o datos de vista
+                    if(ConsultasVentas.actualizar(ModeloVentas)==true){
+                        JOptionPane.showMessageDialog(Ventas, "Datos actualizados correctamente. ");
+                        limpiarCampos();
+                    }else{
+                        JOptionPane.showMessageDialog(Ventas,"No se actualizaron los datos");
+
+                    }
+                 } 
             }
 
             @Override
@@ -60,13 +74,28 @@ public class ControladorVentas implements KeyListener{
             public void mouseExited(MouseEvent e) {
                 Ventas.actualizar.setIcon(new ImageIcon(getClass().getResource("/imagenes/actualizar.png")));
             }
+
+          
         });
 
         //Listeners del Botón Guardar
         Ventas.guardar.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                if(validarCampos()==false){
+                    JOptionPane.showMessageDialog(Ventas,"Los campos no deben estar vacios");
 
+                }
+                else{
+                    llenarModeloConVista();
+                    if(ConsultasVentas.insertar(ModeloVentas)==true){
+                        JOptionPane.showMessageDialog(Ventas, "Datos insertados correctamente. ");
+                        limpiarCampos();
+                    }else{
+                        JOptionPane.showMessageDialog(Ventas,"No se insertaron los datos");
+
+                    }
+                }
             }
 
             @Override
@@ -126,6 +155,20 @@ public class ControladorVentas implements KeyListener{
         Ventas.eliminar.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                if(Ventas.IdVentas.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(Ventas,"El codigo no debe estar vacio");
+
+                }
+                else{
+                    llenarModeloConVista();
+                    if(ConsultasVentas.eliminar(ModeloVentas)==true){
+                        JOptionPane.showMessageDialog(Ventas, "Datos eliminados correctamente. ");
+                        limpiarCampos();
+                    }else{
+                        JOptionPane.showMessageDialog(Ventas,"No se eliminaron los datos");
+
+                    }
+                }
 
             }
 
@@ -156,7 +199,10 @@ public class ControladorVentas implements KeyListener{
         Ventas.buscar.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+              
+                ControladorBuscarVentas VentanaBuscar = new ControladorBuscarVentas(ModeloVentas);
+                //llenar la vista con el modelo
+                llenarVistaConModelo();
             }
 
             @Override
@@ -180,6 +226,8 @@ public class ControladorVentas implements KeyListener{
             public void mouseExited(MouseEvent e) {
                 Ventas.buscar.setIcon(new ImageIcon(getClass().getResource("/imagenes/buscar.png")));
             }
+
+            
         });
 
         //Listeners del Botón Salir
@@ -217,65 +265,55 @@ public class ControladorVentas implements KeyListener{
             }
         });
 
-        //Sirven para poder mover la ventana con el Listener y el MotionListener
-        Ventas.imgFondo.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-                x = e.getX();
-                y = e.getY();
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-
-            }
-        });
-
-        //Los listener del Mouse para cuando deje precionado el Mouse
-        Ventas.imgFondo.addMouseMotionListener(new MouseMotionListener() {
-            @Override
-            public void mouseDragged(MouseEvent e) {
-                Ventas.setLocation(Ventas.getLocation().x+e.getX()-x, Ventas.getLocation().y+e.getY()-y);
-            }
-
-            @Override
-            public void mouseMoved(MouseEvent e) {
-
-            }
-        });
+      
     }
-
+        
     private void limpiarCampos() {
-        Ventas.IdProducto.setText("");
+        Ventas.IdVentas.setText("");
         Ventas.fecha.setText("");
         Ventas.cantidad.setText("");
         Ventas.precio.setText("");
         Ventas.total.setText("");
-
+        Ventas.IdProducto.setText("");
 
         //Deja el cursor en el primer campo
-        Ventas.IdProducto.requestFocus();
+        Ventas.IdVentas.requestFocus();
+    }
+    private boolean validarCampos() {
+        if (Ventas.IdVentas.getText().isEmpty()||
+            Ventas.fecha.getText().isEmpty() ||
+            Ventas.cantidad.getText().isEmpty() ||
+            Ventas.precio.getText().isEmpty() ||
+            Ventas.total.getText().isEmpty() ||
+            Ventas.IdProducto.getText().isEmpty())
+        {
+            return false; // algunos campos estan vacios
+        }
+        else{
+            return true; //todos los campos estan llenos
+        }
+    }
 
+    private void llenarModeloConVista() {
+        ModeloVentas.setIdVentas(Integer.parseInt(Ventas.IdVentas.getText()));
+        ModeloVentas.setFecha(Ventas.fecha.getText());
+        ModeloVentas.setCantidad(Integer.parseInt(Ventas.cantidad.getText()));
+        ModeloVentas.setPrecio(Float.parseFloat(Ventas.precio.getText()));
+        ModeloVentas.setTotal(Float.parseFloat(Ventas.total.getText()));
+        ModeloVentas.setIdProducto(Integer.parseInt(Ventas.IdProducto.getText()));
+    }
+    private void llenarVistaConModelo() {
+        Ventas.IdVentas.setText(ModeloVentas.getIdVentas()+"");
+        Ventas.fecha.setText(ModeloVentas.getFecha()+"");
+        Ventas.cantidad.setText(ModeloVentas.getCantidad()+"");
+        Ventas.precio.setText(ModeloVentas.getPrecio()+"");
+        Ventas.total.setText(ModeloVentas.getTotal()+"");
+        Ventas.IdProducto.setText(ModeloVentas.getIdProducto()+"");
     }
   //Funciones del teclado: al dar enter pasar al siguiente campo
     @Override
     public void keyTyped(KeyEvent ke) {
-             if(ke.getSource()==Ventas.IdProducto){
+             if(ke.getSource()==Ventas.IdVentas){
             if(ke.getKeyChar()==ke.VK_ENTER){ 
                 Ventas.fecha.requestFocus();
                 } 
@@ -291,8 +329,13 @@ public class ControladorVentas implements KeyListener{
             if(ke.getKeyChar()==ke.VK_ENTER){ 
              Ventas.total.requestFocus(); 
                 }
-            }else if (ke.getSource()==Ventas.IdProducto){
+            }
+            else if(ke.getSource()==Ventas.total){
             if(ke.getKeyChar()==ke.VK_ENTER){ 
+             Ventas.IdProducto.requestFocus(); 
+                }
+            }else if (ke.getSource()==Ventas.IdVentas){
+            if(ke.getKeyChar()==ke.VK_ENTER){  /////////7**************
             }
         }   
     }

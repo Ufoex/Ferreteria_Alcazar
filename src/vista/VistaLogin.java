@@ -25,7 +25,7 @@ public class VistaLogin extends JFrame {
     public JPasswordField TxtPassword = new JPasswordField(" Contraseña");
 
     //Objetos Texto
-    JLabel ImagenUsuario = new JLabel(new ImageIcon(getClass().getResource("/imagenes/userIcon.png")));
+    public JLabel ImagenUsuario = new JLabel(new ImageIcon(getClass().getResource("/imagenes/userIcon.png")));
     JLabel LblUsuario = new JLabel(new ImageIcon(getClass().getResource("/imagenes/user.png")));
     JLabel LblPassword = new JLabel(new ImageIcon(getClass().getResource("/imagenes/password.png")));
     public JLabel LblEye = new JLabel(Eye);
