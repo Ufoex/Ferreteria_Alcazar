@@ -21,7 +21,7 @@ public class ControladorBuscarProveedores extends JFrame implements MouseListene
     ModeloProveedores ModeloProveedores; //Para retornarlo a la ventana padre
 
 
-    public ControladorBuscarProveedores(ModeloProductos ModeloProductos) {
+    public ControladorBuscarProveedores(ModeloProveedores ModeloProveedores) {
         this.ModeloProveedores = ModeloProveedores;
         TablaProveedores.setBackground(new Color(0,0,0,0));
         centrarVentana();
