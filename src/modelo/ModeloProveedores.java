@@ -48,7 +48,7 @@ public class ModeloProveedores {
         return nombre;
     }
 
-    public void settNombre(String nombre) {
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 

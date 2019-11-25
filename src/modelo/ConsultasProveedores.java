@@ -140,6 +140,42 @@ public class ConsultasProveedores extends Conexion{
         }
     }
 
+    public boolean buscarTodosLosProductos(DefaultTableModel Modelo){
+        Connection Con = getConexion();
+
+        try {
+            PreparedStatement Ps;//Prepara la sentencia
+            String sql = "select p.idproducto as idproducto, nombre, marca, precio_unitario, stock, categoria FROM producto as p INNER JOIN inventario as i ON p.idproducto = i.idproducto;";
+            Ps =Con.prepareCall(sql);
+            Ps.execute();
+            ResultSet Rs = Ps.executeQuery(); ///Se tiene que guardar en una variable de resultset
+            int numeroDeCampos = Rs.getMetaData().getColumnCount(); //para conocer el numero de registros que va tener la tabla
+
+            while(Rs.next()){ //Mientras haya resultados encontrados
+                Object Fila[] = new Object[numeroDeCampos];
+                for (int i = 0; i < Fila.length; i++) {
+                    Fila[i] = Rs.getObject(i+1);
+                }
+                Modelo.addRow(Fila);
+            }
+
+            return true;
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Error: " +e);
+            return false;
+        }finally{
+            try {
+                Con.close();
+                System.out.println("Cerrando conexión...");
+            } catch (SQLException ex) {
+                Logger.getLogger(ConsultasProductos.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+
+    }
+
 
 
 }

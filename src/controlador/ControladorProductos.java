@@ -124,6 +124,7 @@ public class ControladorProductos implements KeyListener{
         Productos.limpiar.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
+
                 limpiarCampos();
             }
 

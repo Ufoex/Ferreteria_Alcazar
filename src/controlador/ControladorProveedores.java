@@ -73,7 +73,20 @@ public class ControladorProveedores implements KeyListener {
         Proveedores.guardar.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                if(validarCampos()==false){
+                    JOptionPane.showMessageDialog(Proveedores,"Los campos no deben estar vacios");
 
+                }
+                else{
+                    llenarModeloConVista();
+                    if(ConsultasProveedores.insertar(ModeloProveedores)==true){
+                        JOptionPane.showMessageDialog(Proveedores, "Datos insertados correctamente. ");
+                        limpiarCampos();
+                    }else{
+                        JOptionPane.showMessageDialog(Proveedores,"No se insertaron los datos");
+
+                    }
+                }
             }
 
             @Override
@@ -133,7 +146,20 @@ public class ControladorProveedores implements KeyListener {
         Proveedores.eliminar.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                if(Proveedores.IdProveedor.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(Proveedores,"El codigo no debe estar vacio");
 
+                }
+                else{
+                    llenarModeloConVista();
+                    if(ConsultasProveedores.eliminar(ModeloProveedores)==true){
+                        JOptionPane.showMessageDialog(Proveedores, "Datos eliminados correctamente. ");
+                        limpiarCampos();
+                    }else{
+                        JOptionPane.showMessageDialog(Proveedores,"No se eliminaron los datos");
+
+                    }
+                }
             }
 
             @Override
@@ -163,7 +189,9 @@ public class ControladorProveedores implements KeyListener {
         Proveedores.buscar.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+                ControladorBuscarProveedores VentBuscar = new ControladorBuscarProveedores(ModeloProveedores);
+                //llenar la vista con el modelo
+                llenarVistaConModelo();
             }
 
             @Override
@@ -271,7 +299,7 @@ public class ControladorProveedores implements KeyListener {
 
     private void llenarModeloConVista() {
         ModeloProveedores.setIdProveedor(Integer.parseInt(Proveedores.IdProveedor.getText()));
-        ModeloProveedores.settNombre(Proveedores.nombre.getText());
+        ModeloProveedores.setNombre(Proveedores.nombre.getText());
         ModeloProveedores.setApellidoPaterno(Proveedores.apellidoPaterno.getText());
         ModeloProveedores.setApellidoMaterno(Proveedores.apellidoMaterno.getText());
         ModeloProveedores.setRfc(Integer.parseInt(Proveedores.rfc.getText()));
