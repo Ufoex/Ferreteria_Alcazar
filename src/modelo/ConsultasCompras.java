@@ -27,13 +27,13 @@ public class ConsultasCompras extends Conexion {
         Connection Con = getConexion();
         try {
             PreparedStatement PS;
-            String Sql = "insert into compras (idcompras, precio_unitario, cantidad_precio, fecha, total) values (?,?,?,?,?)";
+            String Sql = "insert into compras (idcompra, precio_unitario, cantidad_producto, fecha, total) values (?,?,?,?,?)";
             PS = Con.prepareCall(Sql);
             PS.setInt(1, Modelo.getIdCompras());
             PS.setFloat(2, Modelo.getPrecioUnitario());
                PS.setFloat(3, Modelo.getCantidad());
                PS.setString(4, Modelo.getFecha());
-               PS.setDouble(5, Modelo.getTotal());
+               PS.setFloat(5, Modelo.getTotal());
                PS.execute();
             return true;
         } catch (Exception e) {
@@ -113,7 +113,7 @@ public class ConsultasCompras extends Conexion {
             PS.setFloat(1, Modelo.getPrecioUnitario());
             PS.setFloat(2,Modelo.getCantidad());
             PS.setString(3,Modelo.getFecha());
-            PS.setDouble(4,Modelo.getTotal());
+            PS.setFloat(4,Modelo.getTotal());
             PS.execute();
             return true;
         } catch (Exception e) {

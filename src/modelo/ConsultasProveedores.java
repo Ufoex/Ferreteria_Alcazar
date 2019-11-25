@@ -12,26 +12,33 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
-public class ConsultasVentas extends Conexion{
+public class ConsultasProveedores extends Conexion{
     //insertar datos a Ventas
-    public boolean insertar(ModeloVentas Modelo){
+    public boolean insertar(ModeloProveedores Modelo){
         Connection Con = getConexion();
         try {
             PreparedStatement PS;
-            String Sql = "insert into ventas (idventas, fecha, cantidad, precio_publico, total, idproducto) values (?,?,?,?,?,?)";
+            String Sql = "insert into proveedores (idproveedor, nombre, apellido_paterno, apellido_materno, rfc, telefono, mail, estado, ciudad, cp, colonia, calle, numero) values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
             PS = Con.prepareCall(Sql);
-            PS.setInt(1, Modelo.getIdVentas());
-            PS.setString(2, Modelo.getFecha());
-            PS.setInt(3, Modelo.getCantidad());
-            PS.setFloat(4,Modelo.getPrecio());
-            PS.setFloat(5,Modelo.getTotal());
-            PS.setInt(6,Modelo.getIdProducto());
+            PS.setInt(1, Modelo.getIdProveedor());
+            PS.setString(2, Modelo.getNombre());
+            PS.setString(3, Modelo.getApellidoPaterno());
+            PS.setString(4,Modelo.getApellidoMaterno());
+            PS.setInt(5,Modelo.getRfc());
+            PS.setInt(6,Modelo.getTelefono());
+            PS.setString(7, Modelo.getMail());
+            PS.setString(8, Modelo.getEstado());
+            PS.setString(9, Modelo.getCiudad());
+            PS.setInt(10,Modelo.getCodigoPostal());
+            PS.setString(11,Modelo.getColonia());
+            PS.setString(12,Modelo.getCalle());
+            PS.setInt(13,Modelo.getNumero());
             PS.execute();
             return true;
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Error: "+ e);
             return false;
-        }finally{ 
+        }finally{
             try {
                 Con.close();
                 System.out.println("Cerrando Conexión...");
@@ -39,17 +46,17 @@ public class ConsultasVentas extends Conexion{
                 Logger.getLogger(ConsultasVentas.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    }  
-    public boolean eliminar(ModeloVentas Modelo){
-         Connection Con = getConexion();
+    }
+    public boolean eliminar(ModeloProveedores Modelo){
+        Connection Con = getConexion();
         try {
             PreparedStatement Ps;
-            String Sql = "delete from ventas where idventas = ?";
+            String Sql = "delete from proveedores where idproveedor = ?";
             Ps = Con.prepareCall(Sql);
-            Ps.setInt(1, Modelo.getIdVentas());
+            Ps.setInt(1, Modelo.getIdProveedor());
             Ps.execute();
             return true;
-           
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Error:  "+ e);
             return false;
@@ -61,30 +68,30 @@ public class ConsultasVentas extends Conexion{
                 Logger.getLogger(ConsultasProductos.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    
+
     }
-    public boolean buscar (DefaultTableModel Modelo){ //buscar en nueva tabla 
-        
-         Connection Con = getConexion();
-        
+    public boolean buscar (DefaultTableModel Modelo){ //buscar en nueva tabla
+
+        Connection Con = getConexion();
+
         try {
             PreparedStatement Ps;//Prepara la sentencia
-            String sql = "select * from ventas";
+            String sql = "select * from proveedores";
             Ps =Con.prepareCall(sql);
             Ps.execute();
             ResultSet Rs = Ps.executeQuery(); ///Se tiene que guardar en una variable de resultset
             int numeroDeCampos = Rs.getMetaData().getColumnCount(); //para conocer el numero de registros que va tener la tabla
-            
+
             while(Rs.next()){ //Mientras haya resultados encontrados
                 Object Fila[] = new Object[numeroDeCampos];
                 for (int i = 0; i < Fila.length; i++) {
-                    Fila[i] = Rs.getObject(i+1);                   
+                    Fila[i] = Rs.getObject(i+1);
                 }
-                Modelo.addRow(Fila);            
+                Modelo.addRow(Fila);
             }
-            
+
             return true;
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Error: " +e);
             return false;
@@ -96,51 +103,28 @@ public class ConsultasVentas extends Conexion{
                 Logger.getLogger(ConsultasProductos.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
-    
+
+
     }
-       /* Connection Con = getConexion();
-        try {
-            PreparedStatement PS;
-            String Sql = "select * from ventas where idventas= ?";
-            PS = Con.prepareCall(Sql);
-            PS.setInt(1, Modelo.getIdVentas());
-            ResultSet Rs = PS.executeQuery();
-            if (Rs.next()) { //si encontro datos entra
-                Modelo.setFecha(Rs.getString("fecha"));
-                Modelo.setCantidad(Rs.getInt("cantidad"));
-                Modelo.setPrecio(Rs.getFloat("precio_publico"));
-                Modelo.setTotal(Rs.getFloat("total"));
-                Modelo.setIdProducto(Rs.getInt("idproducto"));
-                return true;
-            }else{//no encontro datos
-            return false;
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error: "+e);
-            return false;
-        }finally{
-            try {
-                
-                Con.close();
-                System.out.println("Cerrando Conexión... ");
-            } catch (SQLException ex) {
-                Logger.getLogger(ConsultasVentas.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        
-    }*/
-    public boolean actualizar (ModeloVentas Modelo){ //(modificar)
+
+    public boolean actualizar (ModeloProveedores Modelo){ //(modificar)
         Connection Con = getConexion();
         try {
             PreparedStatement PS;
-            String Sql = "update ventas set fecha = ?, cantidad set = ?, precio_publico set=?, total set=?, idproducto set=? where idventas = ? "; //una llave primaria no se puede actualizar
+            String Sql = "update proveedores set nombre = ?, set apellido_paterno = ?,  set apellido_materno = ?, set rfc = ?, set telefono = ?, set mail = ?, set estado = ?, set ciudad = ?, set cp = ?, set colonia = ?, set calle = ?, set numero = ?, where idproveedor = ? "; //una llave primaria no se puede actualizar
             PS = Con.prepareCall(Sql);
-            PS.setString(1, Modelo.getFecha());
-            PS.setInt(2,Modelo.getCantidad());
-            PS.setFloat(3,Modelo.getPrecio());
-            PS.setFloat(4,Modelo.getTotal() );
-            PS.setInt(5,Modelo.getIdProducto());
+            PS.setString(1, Modelo.getNombre());
+            PS.setString(2,Modelo.getApellidoPaterno());
+            PS.setString(3,Modelo.getApellidoMaterno());
+            PS.setInt(4,Modelo.getRfc() );
+            PS.setInt(5,Modelo.getTelefono());
+            PS.setString(6, Modelo.getMail());
+            PS.setString(7,Modelo.getEstado());
+            PS.setString(8,Modelo.getCiudad());
+            PS.setInt(9,Modelo.getCodigoPostal() );
+            PS.setString(10,Modelo.getColonia());
+            PS.setString(11, Modelo.getCalle());
+            PS.setInt(12, Modelo.getNumero());
             PS.execute();
             return true;
         } catch (Exception e) {
@@ -156,6 +140,6 @@ public class ConsultasVentas extends Conexion{
         }
     }
 
-    
-    
+
+
 }

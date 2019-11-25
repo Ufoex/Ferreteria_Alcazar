@@ -8,18 +8,18 @@ package modelo;
  * @author denis
  */
 public class ModeloCompras {
-   public int IdCompras;
-   public float precioUnitario;
-   public float cantidad;
-   public String Fecha;
-   public double total;
+   private int IdCompras;
+   private float precioUnitario;
+   private float cantidad;
+   private String Fecha;
+   private float total;
    //constructor vacio
 
     public ModeloCompras() {
     }
    //constructor con todos los campos
 
-    public ModeloCompras(int IdCompras, float precioUnitario, float cantidad, String Fecha, double total) {
+    public ModeloCompras(int IdCompras, float precioUnitario, float cantidad, String Fecha, float total) {
         this.IdCompras = IdCompras;
         this.precioUnitario = precioUnitario;
         this.cantidad = cantidad;
@@ -59,11 +59,11 @@ public class ModeloCompras {
         this.Fecha = Fecha;
     }
 
-    public double getTotal() {
+    public float getTotal() {
         return total;
     }
 
-    public void setTotal(double total) {
+    public void setTotal(float total) {
         this.total = total;
     }
     

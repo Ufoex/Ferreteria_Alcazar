@@ -27,14 +27,7 @@ public class ControladorProductos implements KeyListener{
     public ControladorProductos() {
         agregarListener();
         Productos.setVisible(true);
-          //oyentes para el teclado
-        Productos.idProductos.addKeyListener(this);
-        Productos.nombre.addKeyListener(this);
-        Productos.marca.addKeyListener(this);
-        Productos.precioUnitario.addKeyListener(this);
-        Productos.stock.addKeyListener(this);
-        Productos.categoria.addKeyListener(this);
-               
+        oyentes();
     }
 
     private void agregarListener() {
@@ -322,6 +315,16 @@ public class ControladorProductos implements KeyListener{
         }
     }
 
+    private void oyentes(){
+        //oyentes para el teclado
+        Productos.idProductos.addKeyListener(this);
+        Productos.nombre.addKeyListener(this);
+        Productos.marca.addKeyListener(this);
+        Productos.precioUnitario.addKeyListener(this);
+        Productos.stock.addKeyListener(this);
+        Productos.categoria.addKeyListener(this);
+    }
+
     @Override
     public void keyTyped(KeyEvent ke) {
           if(ke.getSource()==Productos.idProductos){
@@ -343,11 +346,11 @@ public class ControladorProductos implements KeyListener{
             }else if(ke.getSource()==Productos.stock){
             if(ke.getKeyChar()==ke.VK_ENTER){ 
              Productos.categoria.requestFocus(); 
-                }
+            }
             }else if (ke.getSource()==Productos.idProductos){
             if(ke.getKeyChar()==ke.VK_ENTER){ 
             }
-        } 
+          }
     }
 
     @Override

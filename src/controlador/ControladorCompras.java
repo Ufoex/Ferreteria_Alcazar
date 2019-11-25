@@ -8,7 +8,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import modelo.ConsultasCompras;
 import modelo.ModeloCompras;
 
@@ -21,6 +20,7 @@ public class ControladorCompras implements KeyListener{
     public ControladorCompras(){
         agregarListener();
         Compras.setVisible(true);
+        oyentes();
     }
 
     private void agregarListener() {
@@ -275,7 +275,7 @@ public class ControladorCompras implements KeyListener{
          ModeloCompras.setPrecioUnitario(Float.parseFloat(Compras.precioUnitario.getText()));
          ModeloCompras.setCantidad(Float.parseFloat(Compras.cantidadProducto.getText()));
          ModeloCompras.setFecha(Compras.fecha.getText());
-         ModeloCompras.setTotal(Double.parseDouble(Compras.total.getText()));
+         ModeloCompras.setTotal(Float.parseFloat(Compras.total.getText()));
      }
      
      private void llenarVistaConModelo(){
@@ -284,6 +284,14 @@ public class ControladorCompras implements KeyListener{
          Compras.cantidadProducto.setText(ModeloCompras.getCantidad()+"");
          Compras.fecha.setText(ModeloCompras.getFecha()+"");
          Compras.total.setText(ModeloCompras.getTotal()+"");
+     }
+
+     private void oyentes(){
+         Compras.idCompras.addKeyListener(this);
+         Compras.precioUnitario.addKeyListener(this);
+         Compras.cantidadProducto.addKeyListener(this);
+         Compras.fecha.addKeyListener(this);
+         Compras.total.addKeyListener(this);
      }
         //Funciones del teclado: al dar enter pasar al siguiente campo
     @Override

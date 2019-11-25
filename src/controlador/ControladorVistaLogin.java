@@ -121,13 +121,11 @@ public class ControladorVistaLogin implements MouseListener {
          if (me.getSource() == VistaLogin.TxtUsuario){
              if (" Usuario...".equals(VistaLogin.TxtUsuario.getText())){
                  VistaLogin.TxtUsuario.setText("");
-                 VistaLogin.ImagenUsuario.setBounds(1,1,1,1);
              }
          }else if (me.getSource() == VistaLogin.TxtPassword){
              if (" Contraseña".equals(VistaLogin.TxtPassword.getText())){
                  VistaLogin.TxtPassword.setText("");
                  VistaLogin.TxtPassword.setEchoChar('*');
-                 VistaLogin.ImagenUsuario.setBounds(175, 30, 150, 150);
              }
          }
 

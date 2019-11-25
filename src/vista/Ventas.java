@@ -22,6 +22,8 @@ public class Ventas extends JFrame {
     public JTextField precio = new JTextField();
     JLabel txtTotal = new JLabel("Total:");
     public JTextField total = new JTextField();
+    JLabel txtIdVentas = new JLabel ("ID Ventas:");
+    public JTextField IdVentas = new JTextField();
 
     //Botones
     public JButton guardar = new JButton(new ImageIcon(getClass().getResource("/imagenes/guardar.png")));
@@ -68,14 +70,14 @@ public class Ventas extends JFrame {
         txtVentas.setBounds(35,30,110,36);       //Ubicacion y tamaño
         this.add(txtVentas);
 
-        //Atributos ID Producto
+        //Atributos ID Ventas
         //Texto
-        txtIdProducto.setFont(new Font("Tahoma",1,12));
-        txtIdProducto.setBounds(31,110,100,20);
-        this.add(txtIdProducto);
+        txtIdVentas.setFont(new Font("Tahoma",1,12));
+        txtIdVentas.setBounds(51,110,100,20);
+        this.add(txtIdVentas);
         //Barra
-        IdProducto.setBounds(120,110,120,20);
-        this.add(IdProducto);
+        IdVentas.setBounds(120,110,120,20);
+        this.add(IdVentas);
 
         //Atributos Fecha
         //Texto
@@ -112,6 +114,14 @@ public class Ventas extends JFrame {
         //Barra
         total.setBounds(120,230,120,20);
         this.add(total);
+        //Atributos idproducto 
+        //Texto
+        txtIdProducto.setFont(new Font("Tahoma",1,12));
+        txtIdProducto.setBounds(31,260,80,20);
+        this.add(txtIdProducto);
+        //Barra
+        IdProducto.setBounds(120,260,120,20);
+        this.add(IdProducto);
     }
 
     private void agregarBotones(){

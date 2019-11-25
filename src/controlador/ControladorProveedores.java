@@ -1,23 +1,27 @@
 package controlador;
 
+import modelo.ConsultasProveedores;
+import modelo.ModeloProveedores;
 import vista.Proveedores;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 
-public class ControladorProveedores {
+public class ControladorProveedores implements KeyListener {
     //Sirven para agregar  las vistas y los controladores por separado
     Proveedores Proveedores = new Proveedores();
+    ModeloProveedores ModeloProveedores = new ModeloProveedores();
+    ConsultasProveedores ConsultasProveedores = new ConsultasProveedores();
 
-    //Sirve para poder mover la ventana
-    int x,y;
 
     public ControladorProveedores(){
         agregarListener();
         Proveedores.setVisible(true);
+        oyentes();
     }
 
     private void agregarListener() {
@@ -25,8 +29,20 @@ public class ControladorProveedores {
         Proveedores.actualizar.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                //llenarModeloConVista(); //Llena modelo o datos de vista
-                //ConsultasProveedores.modificar(ModeloProveedores);
+                if(validarCampos()==false){
+                    JOptionPane.showMessageDialog(Proveedores,"Los campos no deben estar vacios");
+
+                }
+                else{
+                    llenarModeloConVista(); //Llena modelo o datos de vista
+                    if(ConsultasProveedores.actualizar(ModeloProveedores)==true){
+                        JOptionPane.showMessageDialog(Proveedores, "Datos actualizados correctamente. ");
+                        limpiarCampos();
+                    }else{
+                        JOptionPane.showMessageDialog(Proveedores,"No se actualizaron los datos");
+
+                    }
+                }
             }
 
             @Override
@@ -208,47 +224,7 @@ public class ControladorProveedores {
             }
         });
 
-        //Sirven para poder mover la ventana con el Listener y el MotionListener
-        Proveedores.imgFondo.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
 
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-                x = e.getX();
-                y = e.getY();
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-
-            }
-        });
-
-        //Los listener del Mouse para cuando deje precionado el Mouse
-        Proveedores.imgFondo.addMouseMotionListener(new MouseMotionListener() {
-            @Override
-            public void mouseDragged(MouseEvent e) {
-                Proveedores.setLocation(Proveedores.getLocation().x+e.getX()-x, Proveedores.getLocation().y+e.getY()-y);
-            }
-
-            @Override
-            public void mouseMoved(MouseEvent e) {
-
-            }
-        });
     }
 
     private void limpiarCampos() {
@@ -268,6 +244,145 @@ public class ControladorProveedores {
 
         //Deja el cursor en el campo de codigo
         Proveedores.IdProveedor.requestFocus();
+
+    }
+
+    private boolean validarCampos() {
+        if (Proveedores.IdProveedor.getText().isEmpty()||
+                Proveedores.nombre.getText().isEmpty() ||
+                Proveedores.apellidoPaterno.getText().isEmpty() ||
+                Proveedores.apellidoMaterno.getText().isEmpty() ||
+                Proveedores.rfc.getText().isEmpty() ||
+                Proveedores.telefono.getText().isEmpty() ||
+                Proveedores.mail.getText().isEmpty()||
+                Proveedores.estado.getText().isEmpty() ||
+                Proveedores.ciudad.getText().isEmpty() ||
+                Proveedores.codigoPostal.getText().isEmpty() ||
+                Proveedores.colonia.getText().isEmpty() ||
+                Proveedores.calle.getText().isEmpty() ||
+                Proveedores.numero.getText().isEmpty())
+        {
+            return false; // algunos campos estan vacios
+        }
+        else{
+            return true; //todos los campos estan llenos
+        }
+    }
+
+    private void llenarModeloConVista() {
+        ModeloProveedores.setIdProveedor(Integer.parseInt(Proveedores.IdProveedor.getText()));
+        ModeloProveedores.settNombre(Proveedores.nombre.getText());
+        ModeloProveedores.setApellidoPaterno(Proveedores.apellidoPaterno.getText());
+        ModeloProveedores.setApellidoMaterno(Proveedores.apellidoMaterno.getText());
+        ModeloProveedores.setRfc(Integer.parseInt(Proveedores.rfc.getText()));
+        ModeloProveedores.setTelefono(Integer.parseInt(Proveedores.telefono.getText()));
+        ModeloProveedores.setMail(Proveedores.mail.getText());
+        ModeloProveedores.setEstado(Proveedores.estado.getText());
+        ModeloProveedores.setCiudad(Proveedores.ciudad.getText());
+        ModeloProveedores.setCodigoPostal(Integer.parseInt(Proveedores.codigoPostal.getText()));
+        ModeloProveedores.setColonia(Proveedores.colonia.getText());
+        ModeloProveedores.setCalle(Proveedores.calle.getText());
+        ModeloProveedores.setNumero(Integer.parseInt(Proveedores.numero.getText()));
+
+    }
+
+    private void llenarVistaConModelo() {
+        Proveedores.IdProveedor.setText(ModeloProveedores.getIdProveedor() +"");
+        Proveedores.nombre.setText(ModeloProveedores.getNombre());
+        Proveedores.apellidoPaterno.setText(ModeloProveedores.getApellidoPaterno());
+        Proveedores.apellidoMaterno.setText(ModeloProveedores.getApellidoMaterno());
+        Proveedores.rfc.setText(ModeloProveedores.getRfc()+"");
+        Proveedores.telefono.setText(ModeloProveedores.getTelefono()+"");
+        Proveedores.mail.setText(ModeloProveedores.getMail());
+        Proveedores.estado.setText(ModeloProveedores.getEstado());
+        Proveedores.ciudad.setText(ModeloProveedores.getCiudad());
+        Proveedores.codigoPostal.setText(ModeloProveedores.getCodigoPostal()+"");
+        Proveedores.colonia.setText(ModeloProveedores.getColonia());
+        Proveedores.calle.setText(ModeloProveedores.getCalle());
+        Proveedores.numero.setText(ModeloProveedores.getNumero()+"");
+
+    }
+
+    private void oyentes(){
+        Proveedores.IdProveedor.addKeyListener(this);
+        Proveedores.nombre.addKeyListener(this);
+        Proveedores.apellidoPaterno.addKeyListener(this);
+        Proveedores.apellidoMaterno.addKeyListener(this);
+        Proveedores.rfc.addKeyListener(this);
+        Proveedores.telefono.addKeyListener(this);
+        Proveedores.mail.addKeyListener(this);
+        Proveedores.estado.addKeyListener(this);
+        Proveedores.ciudad.addKeyListener(this);
+        Proveedores.codigoPostal.addKeyListener(this);
+        Proveedores.colonia.addKeyListener(this);
+        Proveedores.calle.addKeyListener(this);
+        Proveedores.numero.addKeyListener(this);
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        if(e.getSource()==Proveedores.IdProveedor){
+            if(e.getKeyChar()==e.VK_ENTER){
+                Proveedores.nombre.requestFocus();
+            }
+        }else if(e.getSource()==Proveedores.nombre){
+            if(e.getKeyChar()==e.VK_ENTER){
+                Proveedores.apellidoPaterno.requestFocus();
+            }
+        }else if(e.getSource()==Proveedores.apellidoPaterno){
+            if(e.getKeyChar()==e.VK_ENTER){
+                Proveedores.apellidoMaterno.requestFocus();
+            }
+        }else if(e.getSource()==Proveedores.apellidoMaterno){
+            if(e.getKeyChar()==e.VK_ENTER){
+                Proveedores.rfc.requestFocus();
+            }
+        }else if(e.getSource()==Proveedores.rfc){
+            if(e.getKeyChar()==e.VK_ENTER){
+                Proveedores.telefono.requestFocus();
+            }
+        }else if (e.getSource()==Proveedores.telefono){
+            if(e.getKeyChar()==e.VK_ENTER){
+                Proveedores.mail.requestFocus();
+            }
+        }else if (e.getSource()==Proveedores.mail){
+            if(e.getKeyChar()==e.VK_ENTER){
+                Proveedores.estado.requestFocus();
+            }
+        }else if (e.getSource()==Proveedores.estado){
+            if(e.getKeyChar()==e.VK_ENTER){
+                Proveedores.ciudad.requestFocus();
+            }
+        }else if (e.getSource()==Proveedores.ciudad){
+            if(e.getKeyChar()==e.VK_ENTER){
+                Proveedores.codigoPostal.requestFocus();
+            }
+        }else if (e.getSource()==Proveedores.codigoPostal){
+            if(e.getKeyChar()==e.VK_ENTER){
+                Proveedores.colonia.requestFocus();
+            }
+        }else if (e.getSource()==Proveedores.colonia){
+            if(e.getKeyChar()==e.VK_ENTER){
+                Proveedores.calle.requestFocus();
+            }
+        }else if (e.getSource()==Proveedores.calle){
+            if(e.getKeyChar()==e.VK_ENTER){
+                Proveedores.numero.requestFocus();
+            }
+        }else if (e.getSource()==Proveedores.numero){
+            if(e.getKeyChar()==e.VK_ENTER){
+                Proveedores.guardar.requestFocus();
+            }
+        }
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
 
     }
 }

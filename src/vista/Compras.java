@@ -32,7 +32,7 @@ public class Compras extends JFrame {
     public JButton salir = new JButton(new ImageIcon(getClass().getResource("/imagenes/clickSalir.png")));
     public JButton eliminar = new JButton(new ImageIcon(getClass().getResource("/imagenes/eliminar.png")));
     public JButton actualizar = new JButton(new ImageIcon(getClass().getResource("/imagenes/actualizar.png")));
-    public JButton cancelar = new JButton(new ImageIcon(getClass().getResource("/imagenes/cancelar.png")));
+    //public JButton cancelar = new JButton(new ImageIcon(getClass().getResource("/imagenes/cancelar.png")));
 
 
     //Tabla
@@ -165,7 +165,7 @@ public class Compras extends JFrame {
         eliminar.setFocusable(false);
 
         //Atributos Cancelar
-        this.add(cancelar);
+     /*   this.add(cancelar);
         cancelar.setVisible(true);
         cancelar.setBounds(480,350,120,50);
         this.cancelar.setOpaque(false);
@@ -173,7 +173,7 @@ public class Compras extends JFrame {
         cancelar.setContentAreaFilled(false);
         cancelar.setBorderPainted(false);
         cancelar.setFocusable(false);
-
+     */
         //Atributos Buscar
         this.add(buscar);
         buscar.setVisible(true);

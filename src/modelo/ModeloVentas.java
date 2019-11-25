@@ -8,12 +8,12 @@ package modelo;
  * @author Partida Castañeda
  */
 public class ModeloVentas {
-    public int IdVentas;
-    public String Fecha;
-    public  int cantidad;
-    public float precio;
-    public float total;
-    public int IdProducto;
+    private int IdVentas;
+    private String Fecha;
+    private int cantidad;
+    private float precio;
+    private float total;
+    private int IdProducto;
     //constructor vacio
 
     public ModeloVentas() {

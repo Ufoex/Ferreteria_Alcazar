@@ -69,7 +69,7 @@ public class ControladorBuscarCompras extends JFrame implements MouseListener, K
             float precio_unitario = Float.parseFloat(ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 2).toString());
             float cantidad_producto = Float.parseFloat(ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 3).toString());
             String fecha = ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 4).toString();
-            double total = Double.parseDouble(ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 5).toString());
+            float total = Float.parseFloat(ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 5).toString());
 
             //Lllenar el modelo con los datos de la fila
             ModeloCompras.setIdCompras(idcompras);

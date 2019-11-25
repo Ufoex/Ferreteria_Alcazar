@@ -8,30 +8,29 @@ import java.awt.Color;
 import java.awt.Dialog;
 import java.awt.Frame;
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
-public class TablaProducto extends Dialog{
+public class TablaProveedores extends Dialog{
     //Imagen de fondo
     public JLabel imgFondo = new JLabel();
-    
+
     JLabel LblProductoBuscar = new JLabel("Producto a buscar");
     public JTextField TxtProductoBuscar = new JTextField();
     public JButton BtnAceptar = new JButton("Aceptar");
     public JTable Tabla =  new JTable();
     public JScrollPane ScrollTabla = new JScrollPane(Tabla);
 
-    public TablaProducto(Frame owner, boolean modal) {
+    public TablaProveedores(Frame owner, boolean modal) {
         super(owner, modal);
         configIni();
         agregarCamposTexto();
-        agregarEtiquetas();       
+        agregarEtiquetas();
         agregarBotones();
         agregarTabla();
-        
+
         //this.setVisible(true); //ya no va
     }
 
@@ -45,7 +44,7 @@ public class TablaProducto extends Dialog{
     private void agregarCamposTexto() {
         TxtProductoBuscar.setBounds(130,25,150,30);
         this.add(TxtProductoBuscar);
-        
+
     }
 
     private void agregarEtiquetas() {
@@ -63,11 +62,10 @@ public class TablaProducto extends Dialog{
         ScrollTabla.setBounds(30, 70, 570, 180); //20, 70, 370, 130
         this.add(ScrollTabla);
     }
-    
-    
 
-   
-    
+
+
+
+
 }
-    
 
