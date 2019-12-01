@@ -24,7 +24,7 @@ public class ConsultasProveedores extends Conexion{
             PS.setString(2, Modelo.getNombre());
             PS.setString(3, Modelo.getApellidoPaterno());
             PS.setString(4,Modelo.getApellidoMaterno());
-            PS.setInt(5,Modelo.getRfc());
+            PS.setString(5,Modelo.getRfc());
             PS.setInt(6,Modelo.getTelefono());
             PS.setString(7, Modelo.getMail());
             PS.setString(8, Modelo.getEstado());
@@ -65,7 +65,7 @@ public class ConsultasProveedores extends Conexion{
                 Con.close();
                 System.out.println("Cerrando Conexión...");
             } catch (SQLException ex) {
-                Logger.getLogger(ConsultasProductos.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ConsultasProveedores.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
@@ -100,7 +100,7 @@ public class ConsultasProveedores extends Conexion{
                 Con.close();
                 System.out.println("Cerrando conexión...");
             } catch (SQLException ex) {
-                Logger.getLogger(ConsultasProductos.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ConsultasProveedores.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
@@ -116,7 +116,7 @@ public class ConsultasProveedores extends Conexion{
             PS.setString(1, Modelo.getNombre());
             PS.setString(2,Modelo.getApellidoPaterno());
             PS.setString(3,Modelo.getApellidoMaterno());
-            PS.setInt(4,Modelo.getRfc() );
+            PS.setString(4,Modelo.getRfc() );
             PS.setInt(5,Modelo.getTelefono());
             PS.setString(6, Modelo.getMail());
             PS.setString(7,Modelo.getEstado());
@@ -135,12 +135,12 @@ public class ConsultasProveedores extends Conexion{
                 Con.close();
                 System.out.println("Cerrando Conexión...");
             } catch (SQLException ex) {
-                Logger.getLogger(ConsultasProductos.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ConsultasProveedores.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
 
-    public boolean buscarTodosLosProductos(DefaultTableModel Modelo){
+    public boolean buscarTodosLosProveedores(DefaultTableModel Modelo){
         Connection Con = getConexion();
 
         try {
@@ -169,7 +169,7 @@ public class ConsultasProveedores extends Conexion{
                 Con.close();
                 System.out.println("Cerrando conexión...");
             } catch (SQLException ex) {
-                Logger.getLogger(ConsultasProductos.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ConsultasProveedores.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 

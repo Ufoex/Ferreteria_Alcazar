@@ -17,11 +17,11 @@ public class TablaProveedores extends Dialog{
     //Imagen de fondo
     public JLabel imgFondo = new JLabel();
 
-    JLabel LblProductoBuscar = new JLabel("Producto a buscar");
-    public JTextField TxtProductoBuscar = new JTextField();
+    JLabel LblProveedorBuscar = new JLabel("Proveedor a buscar");
+    public JTextField TxtProveedorBuscar = new JTextField();
     public JButton BtnAceptar = new JButton("Aceptar");
-    public JTable Tabla =  new JTable();
-    public JScrollPane ScrollTabla = new JScrollPane(Tabla);
+    public JTable jTable =  new JTable();
+    public JScrollPane ScrollTabla = new JScrollPane(jTable);
 
     public TablaProveedores(Frame owner, boolean modal) {
         super(owner, modal);
@@ -42,14 +42,14 @@ public class TablaProveedores extends Dialog{
     }
 
     private void agregarCamposTexto() {
-        TxtProductoBuscar.setBounds(130,25,150,30);
-        this.add(TxtProductoBuscar);
+        TxtProveedorBuscar.setBounds(130,25,150,30);
+        this.add(TxtProveedorBuscar);
 
     }
 
     private void agregarEtiquetas() {
-        LblProductoBuscar.setBounds(10,15,150,40);
-        this.add(LblProductoBuscar);
+        LblProveedorBuscar.setBounds(10,15,150,40);
+        this.add(LblProveedorBuscar);
     }
 
     private void agregarBotones() {

@@ -17,7 +17,7 @@ import vista.TablaProveedores;
 public class ControladorBuscarProveedores extends JFrame implements MouseListener, KeyListener {
     ModeloTablaProveedores ModeloTabla = new ModeloTablaProveedores();
     TablaProveedores TablaProveedores = new TablaProveedores(new Frame(), true);
-    ConsultasProveedores Consultas = new ConsultasProveedores();
+    ConsultasProveedores ConsultasProveedores = new ConsultasProveedores();
     ModeloProveedores ModeloProveedores; //Para retornarlo a la ventana padre
 
 
@@ -33,11 +33,11 @@ public class ControladorBuscarProveedores extends JFrame implements MouseListene
     private void oyentes() {
         //Oyentes del Mouse
         TablaProveedores.BtnAceptar.addMouseListener(this);
-        TablaProveedores.TxtProductoBuscar.addMouseListener(this);
-        TablaProveedores.Tabla.addMouseListener(this);
+        TablaProveedores.TxtProveedorBuscar.addMouseListener(this);
+        TablaProveedores.jTable.addMouseListener(this);
 
         //Oyentes del teclado
-        TablaProveedores.TxtProductoBuscar.addKeyListener(this);
+        TablaProveedores.TxtProveedorBuscar.addKeyListener(this);
 
     }
 
@@ -80,31 +80,27 @@ public class ControladorBuscarProveedores extends JFrame implements MouseListene
     }
 
     private void llenarTablaProveedores() {
-        if (Consultas.buscar(ModeloTabla.getModeloTabla()) == true)
-            TablaProveedores.Tabla.setModel(ModeloTabla.getModeloTabla()); //Lo que setea con la busqueda
+        if (ConsultasProveedores.buscar(ModeloTabla.getModeloTabla()) == true)
+            TablaProveedores.jTable.setModel(ModeloTabla.getModeloTabla()); //Lo que setea con la busqueda
     }
 
     private void llenarModeloConSeleccionFilaTabla() {
-        int FilaSeleccionada = TablaProveedores.Tabla.getSelectedRow();
+        int FilaSeleccionada = TablaProveedores.jTable.getSelectedRow();
         if (FilaSeleccionada != -1) { //si  (no) selecciono algo de la tabla
             //Tomar lo que hay en la fila seleccionada
             int idproveedor = Integer.parseInt(ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 0).toString());
             String nombre = ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 1).toString();
             String apellidoPaterno = ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 2).toString();
             String apellidoMaterno = ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 3).toString();
-            int rfc = Integer.parseInt(ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 4).toString());
+            String rfc = ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 4).toString();
             int telefono = Integer.parseInt(ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 5).toString());
-            String mail = ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 2).toString();
-            String estado = ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 2).toString();
-            String ciudad = ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 2).toString();
-            int codigoPostal = Integer.parseInt(ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 5).toString());
-            String colonia = ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 2).toString();
-            String calle = ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 2).toString();
-            int numero = Integer.parseInt(ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 5).toString());
-
-
-
-
+            String mail = ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 6).toString();
+            String estado = ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 7).toString();
+            String ciudad = ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 8).toString();
+            int codigoPostal = Integer.parseInt(ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 9).toString());
+            String colonia = ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 10).toString();
+            String calle = ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 11).toString();
+            int numero = Integer.parseInt(ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 12).toString());
 
             //Lllenar el modelo con los datos de la fila
             ModeloProveedores.setIdProveedor(idproveedor);
@@ -120,8 +116,6 @@ public class ControladorBuscarProveedores extends JFrame implements MouseListene
             ModeloProveedores.setColonia(colonia);
             ModeloProveedores.setCalle(calle);
             ModeloProveedores.setNumero(numero);
-
-
         }
     }
 

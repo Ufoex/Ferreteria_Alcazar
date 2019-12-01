@@ -1,5 +1,5 @@
 /*
- Tabla para buscar una venta 
+ jTable para buscar una venta
  */
 package vista;
 

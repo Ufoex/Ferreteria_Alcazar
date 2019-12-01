@@ -30,22 +30,27 @@ public class ModeloVentas {
     //getters y setters 
 
     public int getIdVentas() {
+
         return IdVentas;
     }
 
     public void setIdVentas(int IdVentas) {
+
         this.IdVentas = IdVentas;
     }
 
     public String getFecha() {
+
         return Fecha;
     }
 
     public void setFecha(String Fecha) {
+
         this.Fecha = Fecha;
     }
 
     public int getCantidad() {
+
         return cantidad;
     }
 
@@ -54,10 +59,12 @@ public class ModeloVentas {
     }
 
     public float getPrecio() {
+
         return precio;
     }
 
     public void setPrecio(float precio) {
+
         this.precio = precio;
     }
 
@@ -66,14 +73,17 @@ public class ModeloVentas {
     }
 
     public void setTotal(float total) {
+
         this.total = total;
     }
 
     public int getIdProducto() {
+
         return IdProducto;
     }
 
     public void setIdProducto(int IdProducto) {
+
         this.IdProducto = IdProducto;
     }
     

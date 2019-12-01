@@ -189,7 +189,7 @@ public class ControladorProveedores implements KeyListener {
         Proveedores.buscar.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                ControladorBuscarProveedores VentBuscar = new ControladorBuscarProveedores(ModeloProveedores);
+                ControladorBuscarProveedores VentanaBuscar = new ControladorBuscarProveedores(ModeloProveedores);
                 //llenar la vista con el modelo
                 llenarVistaConModelo();
             }
@@ -302,7 +302,7 @@ public class ControladorProveedores implements KeyListener {
         ModeloProveedores.setNombre(Proveedores.nombre.getText());
         ModeloProveedores.setApellidoPaterno(Proveedores.apellidoPaterno.getText());
         ModeloProveedores.setApellidoMaterno(Proveedores.apellidoMaterno.getText());
-        ModeloProveedores.setRfc(Integer.parseInt(Proveedores.rfc.getText()));
+        ModeloProveedores.setRfc(Proveedores.rfc.getText());
         ModeloProveedores.setTelefono(Integer.parseInt(Proveedores.telefono.getText()));
         ModeloProveedores.setMail(Proveedores.mail.getText());
         ModeloProveedores.setEstado(Proveedores.estado.getText());
@@ -319,7 +319,7 @@ public class ControladorProveedores implements KeyListener {
         Proveedores.nombre.setText(ModeloProveedores.getNombre());
         Proveedores.apellidoPaterno.setText(ModeloProveedores.getApellidoPaterno());
         Proveedores.apellidoMaterno.setText(ModeloProveedores.getApellidoMaterno());
-        Proveedores.rfc.setText(ModeloProveedores.getRfc()+"");
+        Proveedores.rfc.setText(ModeloProveedores.getRfc());
         Proveedores.telefono.setText(ModeloProveedores.getTelefono()+"");
         Proveedores.mail.setText(ModeloProveedores.getMail());
         Proveedores.estado.setText(ModeloProveedores.getEstado());

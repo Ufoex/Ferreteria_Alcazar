@@ -51,7 +51,7 @@ public class Proveedores extends JFrame {
     public JButton actualizar = new JButton(new ImageIcon(getClass().getResource("/imagenes/actualizar.png")));
 
 
-    //Tabla
+    //jTable
     JTable tabla = new JTable();
     JScrollPane scroll = new JScrollPane();
 

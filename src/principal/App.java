@@ -1,6 +1,8 @@
 package principal;
 
+import controlador.ControladorBuscarProveedores;
 import controlador.ControladorProductos;
+import controlador.ControladorVistaLogin;
 import controlador.ControladorVistaMenu;
 import vista.Splash;
 
@@ -9,7 +11,6 @@ public class App {
 
 //        Splash TEST =new Splash();
         ControladorVistaMenu test = new ControladorVistaMenu();
-//        ControladorProductos productos = new ControladorProductos();
-        
+//        ControladorVistaLogin test = new ControladorVistaLogin();
     }
 }

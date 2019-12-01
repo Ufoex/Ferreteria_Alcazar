@@ -35,7 +35,7 @@ public class Compras extends JFrame {
     //public JButton cancelar = new JButton(new ImageIcon(getClass().getResource("/imagenes/cancelar.png")));
 
 
-    //Tabla
+    //jTable
     JTable tabla = new JTable();
     JScrollPane scroll = new JScrollPane();
 
