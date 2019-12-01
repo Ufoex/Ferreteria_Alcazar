@@ -18,16 +18,17 @@ public class ConsultasEmpleados extends Conexion{
         Connection Con = getConexion();
         try {
             PreparedStatement PS;
-            String Sql = "insert into empleado (idempleado, nombre, apellido_paterno, apellido_materno, rfc, telefono, sexo, fecha_ingreso, turno, colonia, calle, numero) values (?,?,?,?,?,?,?,?,?,?,?,?)";
+            String Sql = "insert into empleado (idempleado, nombre, apellido_paterno, apellido_materno, telefono, sexo, fecha_ingreso, rfc, turno, colonia, calle, numero) values (?,?,?,?,?,?,?,?,?,?,?,?)";
             PS = Con.prepareCall(Sql);
             PS.setInt(1, Modelo.getIdEmpleado());
             PS.setString(2, Modelo.getNombre());
             PS.setString(3, Modelo.getApellidoPaterno());
             PS.setString(4,Modelo.getApellidoMaterno());
-            PS.setString(5,Modelo.getRfc());
-            PS.setInt(6,Modelo.getTelefono());
-            PS.setString(7, Modelo.getSexo());
-            PS.setString(8, Modelo.getFechaIngreso());
+            PS.setInt(5,Modelo.getTelefono());
+            PS.setString(6, Modelo.getSexo());
+            PS.setString(7, Modelo.getFechaIngreso());
+            PS.setString(8,Modelo.getRfc());
+
             PS.setString(9, Modelo.getTurno());
             PS.setString(10,Modelo.getColonia());
             PS.setString(11,Modelo.getCalle());
@@ -110,15 +111,16 @@ public class ConsultasEmpleados extends Conexion{
         Connection Con = getConexion();
         try {
             PreparedStatement PS;
-            String Sql = "UPDATE `empleado` SET `nombre` = ?, `apellido_paterno` = ?, `apellido_materno` = ?, `rfc` = ?, `telefono` = ?, `sexo` = ?, `fecha_ingreso` = ?, `turno` = ?, `colonia` = ?, `calle` = ?, `numero` = ? WHERE `empleado`.`idempleado` = ?;"; //una llave primaria no se puede actualizar
+            String Sql = "UPDATE `empleado` SET `nombre` = ?, `apellido_paterno` = ?, `apellido_materno` = ?, `telefono` = ?, `sexo` = ?, `fecha_ingreso` = ?, `rfc` = ?, `turno` = ?, `colonia` = ?, `calle` = ?, `numero` = ? WHERE `empleado`.`idempleado` = ?;"; //una llave primaria no se puede actualizar
             PS = Con.prepareCall(Sql);
             PS.setString(1, Modelo.getNombre());
             PS.setString(2,Modelo.getApellidoPaterno());
             PS.setString(3,Modelo.getApellidoMaterno());
-            PS.setString(4,Modelo.getRfc() );
-            PS.setInt(5,Modelo.getTelefono());
-            PS.setString(6, Modelo.getSexo());
-            PS.setString(7,Modelo.getFechaIngreso());
+            PS.setInt(4,Modelo.getTelefono());
+            PS.setString(5, Modelo.getSexo());
+            PS.setString(6,Modelo.getFechaIngreso());
+            PS.setString(7,Modelo.getRfc() );
+
             PS.setString(8,Modelo.getTurno());
             PS.setString(9,Modelo.getColonia());
             PS.setString(10, Modelo.getCalle());

@@ -92,10 +92,10 @@ public class ControladorBuscarEmpleados extends JFrame implements MouseListener,
             String nombre = ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 1).toString();
             String apellidoPaterno = ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 2).toString();
             String apellidoMaterno = ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 3).toString();
-            String rfc = ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 4).toString();
-            int telefono = Integer.parseInt(ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 5).toString());
-            String sexo = ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 6).toString();
-            String fechaIngreso = ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 7).toString();
+            int telefono = Integer.parseInt(ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 4).toString());
+            String sexo = ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 5).toString();
+            String fechaIngreso = ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 6).toString();
+            String rfc = ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 7).toString();
             String turno = ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 8).toString();
             String colonia = ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 9).toString();
             String calle = ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 10).toString();
