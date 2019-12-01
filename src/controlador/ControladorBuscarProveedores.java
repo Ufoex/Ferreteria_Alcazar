@@ -81,7 +81,7 @@ public class ControladorBuscarProveedores extends JFrame implements MouseListene
 
     private void llenarTablaProveedores() {
         if (ConsultasProveedores.buscar(ModeloTabla.getModeloTabla()) == true)
-            TablaProveedores.jTable.setModel(ModeloTabla.getModeloTabla()); //Lo que setea con la busqueda
+            TablaProveedores.jTable.setModel(ModeloTabla.getModeloTabla());
     }
 
     private void llenarModeloConSeleccionFilaTabla() {
