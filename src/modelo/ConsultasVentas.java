@@ -1,4 +1,6 @@
-
+/*
+consultas que seran ejecutadas por controlador Ventas
+ */
 package modelo;
 
 import conexion.Conexion;
@@ -11,7 +13,10 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-
+/**
+ *
+ * @author Partida Castañeda
+ */
 public class ConsultasVentas extends Conexion{
     //insertar datos a Ventas
     public boolean insertar(ModeloVentas Modelo){
@@ -131,16 +136,16 @@ public class ConsultasVentas extends Conexion{
         
     }*/
     public boolean actualizar (ModeloVentas Modelo){ //(modificar)
-        Connection Con = getConexion();
+   Connection Con = getConexion();
         try {
             PreparedStatement PS;
-            String Sql = "update ventas set fecha = ?, cantidad set = ?, precio_publico set=?, total set=?, idproducto set=? where idventas = ? "; //una llave primaria no se puede actualizar
+            String Sql = "UPDATE `ventas` SET `fecha` = ?, `cantidad` = ?, `precio_publico` = ?, `total` = ? WHERE `ventas`.`idventas` = ?;"; //una llave primaria no se puede actualizar
             PS = Con.prepareCall(Sql);
             PS.setString(1, Modelo.getFecha());
             PS.setInt(2,Modelo.getCantidad());
             PS.setFloat(3,Modelo.getPrecio());
             PS.setFloat(4,Modelo.getTotal() );
-            PS.setInt(5,Modelo.getIdProducto());
+            PS.setInt(5,Modelo.getIdVentas());
             PS.execute();
             return true;
         } catch (Exception e) {

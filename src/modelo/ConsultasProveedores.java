@@ -111,7 +111,7 @@ public class ConsultasProveedores extends Conexion{
         Connection Con = getConexion();
         try {
             PreparedStatement PS;
-            String Sql = "update proveedores set nombre = ?, set apellido_paterno = ?,  set apellido_materno = ?, set rfc = ?, set telefono = ?, set mail = ?, set estado = ?, set ciudad = ?, set cp = ?, set colonia = ?, set calle = ?, set numero = ?, where idproveedor = ? "; //una llave primaria no se puede actualizar
+            String Sql = "UPDATE `proveedores` SET `nombre` = ?, `apellido_paterno` = ?, `apellido_materno` = ?, `rfc` = ?, `telefono` = ?, `mail` = ?, `estado` = ?, `ciudad` = ?, `cp` = ?, `colonia` = ?, `calle` = ?, `numero` = ? WHERE `proveedores`.`idproveedor` = ?;"; //una llave primaria no se puede actualizar
             PS = Con.prepareCall(Sql);
             PS.setString(1, Modelo.getNombre());
             PS.setString(2,Modelo.getApellidoPaterno());
@@ -125,10 +125,12 @@ public class ConsultasProveedores extends Conexion{
             PS.setString(10,Modelo.getColonia());
             PS.setString(11, Modelo.getCalle());
             PS.setInt(12, Modelo.getNumero());
+            PS.setInt(13, Modelo.getIdProveedor());
             PS.execute();
             return true;
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error: "+e);
+            System.out.println(e);
             return false;
         }finally{
             try {
@@ -140,41 +142,41 @@ public class ConsultasProveedores extends Conexion{
         }
     }
 
-    public boolean buscarTodosLosProveedores(DefaultTableModel Modelo){
-        Connection Con = getConexion();
-
-        try {
-            PreparedStatement Ps;//Prepara la sentencia
-            String sql = "select p.idproducto as idproducto, nombre, marca, precio_unitario, stock, categoria FROM producto as p INNER JOIN inventario as i ON p.idproducto = i.idproducto;";
-            Ps =Con.prepareCall(sql);
-            Ps.execute();
-            ResultSet Rs = Ps.executeQuery(); ///Se tiene que guardar en una variable de resultset
-            int numeroDeCampos = Rs.getMetaData().getColumnCount(); //para conocer el numero de registros que va tener la tabla
-
-            while(Rs.next()){ //Mientras haya resultados encontrados
-                Object Fila[] = new Object[numeroDeCampos];
-                for (int i = 0; i < Fila.length; i++) {
-                    Fila[i] = Rs.getObject(i+1);
-                }
-                Modelo.addRow(Fila);
-            }
-
-            return true;
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,"Error: " +e);
-            return false;
-        }finally{
-            try {
-                Con.close();
-                System.out.println("Cerrando conexión...");
-            } catch (SQLException ex) {
-                Logger.getLogger(ConsultasProveedores.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-
-
-    }
+//    public boolean buscarTodosLosProveedores(DefaultTableModel Modelo){
+//        Connection Con = getConexion();
+//
+//        try {
+//            PreparedStatement Ps;//Prepara la sentencia
+//            String sql = "select p.idproducto as idproducto, nombre, marca, precio_unitario, stock, categoria FROM producto as p INNER JOIN inventario as i ON p.idproducto = i.idproducto;";
+//            Ps =Con.prepareCall(sql);
+//            Ps.execute();
+//            ResultSet Rs = Ps.executeQuery(); ///Se tiene que guardar en una variable de resultset
+//            int numeroDeCampos = Rs.getMetaData().getColumnCount(); //para conocer el numero de registros que va tener la tabla
+//
+//            while(Rs.next()){ //Mientras haya resultados encontrados
+//                Object Fila[] = new Object[numeroDeCampos];
+//                for (int i = 0; i < Fila.length; i++) {
+//                    Fila[i] = Rs.getObject(i+1);
+//                }
+//                Modelo.addRow(Fila);
+//            }
+//
+//            return true;
+//
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null,"Error: " +e);
+//            return false;
+//        }finally{
+//            try {
+//                Con.close();
+//                System.out.println("Cerrando conexión...");
+//            } catch (SQLException ex) {
+//                Logger.getLogger(ConsultasProveedores.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }
+//
+//
+//    }
 
 
 

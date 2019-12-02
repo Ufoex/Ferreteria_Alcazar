@@ -1,24 +1,27 @@
 package controlador;
 
+import modelo.ConsultasEmpleados;
+import modelo.ModeloEmpleados;
 import vista.Empleados;
-import vista.Proveedores;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 
-public class ControladorEmpleados {
+public class ControladorEmpleados implements KeyListener {
     //Sirven para agregar  las vistas y los controladores por separado
     Empleados Empleados = new Empleados();
+    ModeloEmpleados ModeloEmpleados = new ModeloEmpleados();
+    ConsultasEmpleados ConsultasEmpleados = new ConsultasEmpleados();
 
-    //Sirve para poder mover la ventana
-    int x,y;
 
     public ControladorEmpleados(){
         agregarListener();
         Empleados.setVisible(true);
+        oyentes();
     }
 
     private void agregarListener() {
@@ -26,8 +29,20 @@ public class ControladorEmpleados {
         Empleados.actualizar.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                //llenarModeloConVista(); //Llena modelo o datos de vista
-                //ConsultasProveedores.modificar(ModeloProveedores);
+                if(validarCampos()==false){
+                    JOptionPane.showMessageDialog(Empleados,"Los campos no deben estar vacios");
+
+                }
+                else{
+                    llenarModeloConVista(); //Llena modelo o datos de vista
+                    if(ConsultasEmpleados.actualizar(ModeloEmpleados)==true){
+                        JOptionPane.showMessageDialog(Empleados, "Datos actualizados correctamente. ");
+                        limpiarCampos();
+                    }else{
+                        JOptionPane.showMessageDialog(Empleados,"No se actualizaron los datos");
+
+                    }
+                }
             }
 
             @Override
@@ -58,7 +73,20 @@ public class ControladorEmpleados {
         Empleados.guardar.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                if(validarCampos()==false){
+                    JOptionPane.showMessageDialog(Empleados,"Los campos no deben estar vacios");
 
+                }
+                else{
+                    llenarModeloConVista();
+                    if(ConsultasEmpleados.insertar(ModeloEmpleados)==true){
+                        JOptionPane.showMessageDialog(Empleados, "Datos insertados correctamente. ");
+                        limpiarCampos();
+                    }else{
+                        JOptionPane.showMessageDialog(Empleados,"No se insertaron los datos");
+
+                    }
+                }
             }
 
             @Override
@@ -88,7 +116,8 @@ public class ControladorEmpleados {
         Empleados.limpiar.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                limpiarCampos();
+
+                 limpiarCampos();
             }
 
             @Override
@@ -118,7 +147,20 @@ public class ControladorEmpleados {
         Empleados.eliminar.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                if(Empleados.IdEmpleado.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(Empleados,"El codigo no debe estar vacio");
 
+                }
+                else{
+                    llenarModeloConVista();
+                    if(ConsultasEmpleados.eliminar(ModeloEmpleados)==true){
+                        JOptionPane.showMessageDialog(Empleados, "Datos eliminados correctamente. ");
+                        limpiarCampos();
+                    }else{
+                        JOptionPane.showMessageDialog(Empleados,"No se eliminaron los datos");
+
+                    }
+                }
             }
 
             @Override
@@ -148,7 +190,9 @@ public class ControladorEmpleados {
         Empleados.buscar.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+                ControladorBuscarEmpleados VentanaBuscar = new ControladorBuscarEmpleados(ModeloEmpleados);
+                //llenar la vista con el modelo
+                llenarVistaConModelo();
             }
 
             @Override
@@ -209,51 +253,11 @@ public class ControladorEmpleados {
             }
         });
 
-        //Sirven para poder mover la ventana con el Listener y el MotionListener
-        Empleados.imgFondo.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
 
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-                x = e.getX();
-                y = e.getY();
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-
-            }
-        });
-
-        //Los listener del Mouse para cuando deje precionado el Mouse
-        Empleados.imgFondo.addMouseMotionListener(new MouseMotionListener() {
-            @Override
-            public void mouseDragged(MouseEvent e) {
-                Empleados.setLocation(Empleados.getLocation().x+e.getX()-x, Empleados.getLocation().y+e.getY()-y);
-            }
-
-            @Override
-            public void mouseMoved(MouseEvent e) {
-
-            }
-        });
     }
 
     private void limpiarCampos() {
-        Empleados.idEmpleado.setText("");
+        Empleados.IdEmpleado.setText("");
         Empleados.nombre.setText("");
         Empleados.apellidoPaterno.setText("");
         Empleados.apellidoMaterno.setText("");
@@ -267,7 +271,137 @@ public class ControladorEmpleados {
         Empleados.numero.setText("");
 
         //Deja el cursor en el campo de codigo
-        Empleados.idEmpleado.requestFocus();
+        Empleados.IdEmpleado.requestFocus();
+
+    }
+
+    private boolean validarCampos() {
+        if (Empleados.IdEmpleado.getText().isEmpty()||
+                Empleados.nombre.getText().isEmpty() ||
+                Empleados.apellidoPaterno.getText().isEmpty() ||
+                Empleados.apellidoMaterno.getText().isEmpty() ||
+                Empleados.rfc.getText().isEmpty() ||
+                Empleados.telefono.getText().isEmpty() ||
+                Empleados.sexo.getText().isEmpty()||
+                Empleados.fechaIngreso.getText().isEmpty() ||
+                Empleados.turno.getText().isEmpty() ||
+                Empleados.colonia.getText().isEmpty() ||
+                Empleados.calle.getText().isEmpty() ||
+                Empleados.numero.getText().isEmpty())
+        {
+            return false; // algunos campos estan vacios
+        }
+        else{
+            return true; //todos los campos estan llenos
+        }
+    }
+
+    private void llenarModeloConVista() {
+        ModeloEmpleados.setIdEmpleado(Integer.parseInt(Empleados.IdEmpleado.getText()));
+        ModeloEmpleados.setNombre(Empleados.nombre.getText());
+        ModeloEmpleados.setApellidoPaterno(Empleados.apellidoPaterno.getText());
+        ModeloEmpleados.setApellidoMaterno(Empleados.apellidoMaterno.getText());
+        ModeloEmpleados.setRfc(Empleados.rfc.getText());
+        ModeloEmpleados.setTelefono(Integer.parseInt(Empleados.telefono.getText()));
+        ModeloEmpleados.setSexo(Empleados.sexo.getText());
+        ModeloEmpleados.setFechaIngreso(Empleados.fechaIngreso.getText());
+        ModeloEmpleados.setTurno(Empleados.turno.getText());
+        ModeloEmpleados.setColonia(Empleados.colonia.getText());
+        ModeloEmpleados.setCalle(Empleados.calle.getText());
+        ModeloEmpleados.setNumero(Integer.parseInt(Empleados.numero.getText()));
+
+    }
+
+    private void llenarVistaConModelo() {
+        Empleados.IdEmpleado.setText(ModeloEmpleados.getIdEmpleado() +"");
+        Empleados.nombre.setText(ModeloEmpleados.getNombre());
+        Empleados.apellidoPaterno.setText(ModeloEmpleados.getApellidoPaterno());
+        Empleados.apellidoMaterno.setText(ModeloEmpleados.getApellidoMaterno());
+        Empleados.rfc.setText(ModeloEmpleados.getRfc());
+        Empleados.telefono.setText(ModeloEmpleados.getTelefono()+"");
+        Empleados.sexo.setText(ModeloEmpleados.getSexo());
+        Empleados.fechaIngreso.setText(ModeloEmpleados.getFechaIngreso());
+        Empleados.turno.setText(ModeloEmpleados.getTurno());
+        Empleados.colonia.setText(ModeloEmpleados.getColonia());
+        Empleados.calle.setText(ModeloEmpleados.getCalle());
+        Empleados.numero.setText(ModeloEmpleados.getNumero()+"");
+
+    }
+    private void oyentes(){
+        Empleados.IdEmpleado.addKeyListener(this);
+        Empleados.nombre.addKeyListener(this);
+        Empleados.apellidoPaterno.addKeyListener(this);
+        Empleados.apellidoMaterno.addKeyListener(this);
+        Empleados.rfc.addKeyListener(this);
+        Empleados.telefono.addKeyListener(this);
+        Empleados.sexo.addKeyListener(this);
+        Empleados.fechaIngreso.addKeyListener(this);
+        Empleados.turno.addKeyListener(this);
+        Empleados.colonia.addKeyListener(this);
+        Empleados.calle.addKeyListener(this);
+        Empleados.numero.addKeyListener(this);
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        if(e.getSource()==Empleados.IdEmpleado){
+            if(e.getKeyChar()==e.VK_ENTER){
+                Empleados.nombre.requestFocus();
+            }
+        }else if(e.getSource()==Empleados.nombre){
+            if(e.getKeyChar()==e.VK_ENTER){
+                Empleados.apellidoPaterno.requestFocus();
+            }
+        }else if(e.getSource()==Empleados.apellidoPaterno){
+            if(e.getKeyChar()==e.VK_ENTER){
+                Empleados.apellidoMaterno.requestFocus();
+            }
+        }else if(e.getSource()==Empleados.apellidoMaterno){
+            if(e.getKeyChar()==e.VK_ENTER){
+                Empleados.rfc.requestFocus();
+            }
+        }else if(e.getSource()==Empleados.rfc){
+            if(e.getKeyChar()==e.VK_ENTER){
+                Empleados.telefono.requestFocus();
+            }
+        }else if (e.getSource()==Empleados.telefono){
+            if(e.getKeyChar()==e.VK_ENTER){
+                Empleados.sexo.requestFocus();
+            }
+        }else if (e.getSource()==Empleados.sexo){
+            if(e.getKeyChar()==e.VK_ENTER){
+                Empleados.fechaIngreso.requestFocus();
+            }
+        }else if (e.getSource()==Empleados.fechaIngreso){
+            if(e.getKeyChar()==e.VK_ENTER){
+                Empleados.turno.requestFocus();
+            }
+        }else if (e.getSource()==Empleados.turno){
+            if(e.getKeyChar()==e.VK_ENTER){
+                Empleados.colonia.requestFocus();
+            }
+        }else if (e.getSource()==Empleados.colonia){
+            if(e.getKeyChar()==e.VK_ENTER){
+                Empleados.calle.requestFocus();
+            }
+        }else if (e.getSource()==Empleados.calle){
+            if(e.getKeyChar()==e.VK_ENTER){
+                Empleados.numero.requestFocus();
+            }
+        }else if (e.getSource()==Empleados.numero){
+            if(e.getKeyChar()==e.VK_ENTER){
+                Empleados.guardar.requestFocus();
+            }
+        }
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
 
     }
 }

@@ -2,8 +2,6 @@ package vista;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 public class Empleados extends JFrame {
 //    Objetos
@@ -38,7 +36,7 @@ public class Empleados extends JFrame {
     JLabel txtTurno = new JLabel("Turno (M/V):");
     public JTextField turno = new JTextField();
     JLabel txtidEmpleado = new JLabel("ID Empleado:");
-    public JTextField idEmpleado = new JTextField();
+    public JTextField IdEmpleado = new JTextField();
 
     //Botones
     public JButton guardar = new JButton(new ImageIcon(getClass().getResource("/imagenes/guardar.png")));
@@ -91,8 +89,8 @@ public class Empleados extends JFrame {
         txtidEmpleado.setBounds(80,75,100,20);//*******************************
         this.add(txtidEmpleado);
         //Barra
-        idEmpleado.setBounds(165,75,120,20); //120, 75, 120, 20
-        this.add(idEmpleado);
+        IdEmpleado.setBounds(165,75,120,20); //120, 75, 120, 20
+        this.add(IdEmpleado);
 
         //Atributos Nombre
         //Texto
