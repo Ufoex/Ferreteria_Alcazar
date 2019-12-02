@@ -14,35 +14,36 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JFrame;
+
 import modelo.ConsultasCompras;
 import modelo.ModeloCompras;
 import modelo.ModeloTablaCompras;
 import vista.TablaCompras;
 
 /**
- *
  * @author denis
  */
-public class ControladorBuscarCompras extends JFrame implements MouseListener, KeyListener{
-    ModeloTablaCompras ModeloTabla = new   ModeloTablaCompras();
+public class ControladorBuscarCompras extends JFrame implements MouseListener, KeyListener {
+    ModeloTablaCompras ModeloTabla = new ModeloTablaCompras();
     TablaCompras TablaCompras = new TablaCompras(new Frame(), true);
     ConsultasCompras ConsultasCompras = new ConsultasCompras();
     ModeloCompras ModeloCompras; //para retornar a la ventana padre
-    
-    public ControladorBuscarCompras(ModeloCompras ModeloCompras){
+
+    public ControladorBuscarCompras(ModeloCompras ModeloCompras) {
         this.ModeloCompras = ModeloCompras;
-        TablaCompras.setBackground(new Color(0,0,0,0));
+        TablaCompras.setBackground(new Color(0, 0, 0, 0));
         centrarVentana();
         oyentes();
         llenarTablaCompras();
         TablaCompras.setVisible(true);
     }
+
     private void centrarVentana() {
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);
-        int y = (int) ((dimension.getHeight() - this.getHeight()) /2);
-        x = x-190;
-        y = y-180;
+        int y = (int) ((dimension.getHeight() - this.getHeight()) / 2);
+        x = x - 190;
+        y = y - 180;
         TablaCompras.setLocation(x, y);
     }
 
@@ -51,23 +52,24 @@ public class ControladorBuscarCompras extends JFrame implements MouseListener, K
         TablaCompras.BtnAceptar.addMouseListener(this);
         TablaCompras.TxtComprasBuscar.addMouseListener(this);
         TablaCompras.Tabla.addMouseListener(this);
-        
+
         //oyentes del teclado
         TablaCompras.TxtComprasBuscar.addKeyListener(this);
     }
 
     private void llenarTablaCompras() {
-        if (ConsultasCompras.buscar(ModeloTabla.getModeloTabla())== true) {
+        if (ConsultasCompras.buscar(ModeloTabla.getModeloTabla()) == true) {
             TablaCompras.Tabla.setModel(ModeloTabla.getModeloTabla());
         }
     }
+
     private void llenarModeloConSeleccionFilaTabla() {
-         int FilaSeleccionada = TablaCompras.Tabla.getSelectedRow();
+        int FilaSeleccionada = TablaCompras.Tabla.getSelectedRow();
         if (FilaSeleccionada != -1) { //si  (no) selecciono algo de la tabla
             //Tomar lo que hay en la fila seleccionada
             int idcompras = Integer.parseInt(ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 1).toString());
             float precio_unitario = Float.parseFloat(ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 2).toString());
-            float cantidad_producto = Float.parseFloat(ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 3).toString());
+            int cantidad_producto = Integer.parseInt(ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 3).toString());
             String fecha = ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 4).toString();
             float total = Float.parseFloat(ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 5).toString());
 
@@ -77,15 +79,16 @@ public class ControladorBuscarCompras extends JFrame implements MouseListener, K
             ModeloCompras.setCantidad(cantidad_producto);
             ModeloCompras.setFecha(fecha);
             ModeloCompras.setTotal(total);
-            }
-     }
-//eventos del mouse 
+        }
+    }
+
+    //eventos del mouse
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getSource() == TablaCompras.BtnAceptar) {
             llenarModeloConSeleccionFilaTabla();
             TablaCompras.dispose(); //cierra la ventana de busqueda
-            
+
         }
     }
 
@@ -104,6 +107,7 @@ public class ControladorBuscarCompras extends JFrame implements MouseListener, K
     @Override
     public void mouseExited(MouseEvent e) {
     }
+
     //eventos del teclado
     @Override
     public void keyTyped(KeyEvent e) {
@@ -117,6 +121,5 @@ public class ControladorBuscarCompras extends JFrame implements MouseListener, K
     public void keyReleased(KeyEvent e) {
     }
 
-    
-    
+
 }

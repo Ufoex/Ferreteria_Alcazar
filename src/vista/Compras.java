@@ -1,7 +1,12 @@
 package vista;
 
+import javafx.scene.control.ComboBox;
+import modelo.ConsultasCompras;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -33,11 +38,10 @@ public class Compras extends JFrame {
     public JButton eliminar = new JButton(new ImageIcon(getClass().getResource("/imagenes/eliminar.png")));
     public JButton actualizar = new JButton(new ImageIcon(getClass().getResource("/imagenes/actualizar.png")));
     //public JButton cancelar = new JButton(new ImageIcon(getClass().getResource("/imagenes/cancelar.png")));
+    // Para Mover la ventana
 
-
-    //jTable
-    JTable tabla = new JTable();
-    JScrollPane scroll = new JScrollPane();
+    public JComboBox SelectProductos = new JComboBox();;
+    public modelo.ConsultasCompras ConsultasCompras = new ConsultasCompras();
 
 
     public Compras(){
@@ -120,6 +124,12 @@ public class Compras extends JFrame {
         this.add(txtTotal);
         //Barra
         total.setBounds(165,230,120,20);
+
+        SelectProductos.setBounds(129, 260, 120,20);
+        this.add(SelectProductos);
+        ConsultasCompras.getPruducts().forEach(item -> SelectProductos.addItem(item));
+        SelectProductos.setVisible(true);
+
         this.add(total);
     }
 
@@ -196,4 +206,6 @@ public class Compras extends JFrame {
         salir.setFocusable(false);
 
     }
+
+
 }

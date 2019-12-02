@@ -4,27 +4,31 @@
 package modelo;
 
 /**
- *
  * @author denis
  */
 public class ModeloCompras {
-   private int IdCompras;
-   private float precioUnitario;
-   private float cantidad;
-   private String Fecha;
-   private float total;
-   //constructor vacio
+    private int IdCompras;
+    private float precioUnitario;
+    private int cantidad;
+    private String Fecha;
+    private float total;
+
+    private int idproducto;
+    private String productoNombre;
+    //constructor vacio
 
     public ModeloCompras() {
     }
-   //constructor con todos los campos
+    //constructor con todos los campos
 
-    public ModeloCompras(int IdCompras, float precioUnitario, float cantidad, String Fecha, float total) {
+    public ModeloCompras(int IdCompras, float precioUnitario, int cantidad, String Fecha, float total, int idproducto, String productoNombre) {
         this.IdCompras = IdCompras;
         this.precioUnitario = precioUnitario;
         this.cantidad = cantidad;
         this.Fecha = Fecha;
         this.total = total;
+        this.idproducto = idproducto;
+        this.productoNombre = productoNombre;
     }
 
     public int getIdCompras() {
@@ -43,11 +47,11 @@ public class ModeloCompras {
         this.precioUnitario = precioUnitario;
     }
 
-    public float getCantidad() {
+    public int getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(float cantidad) {
+    public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
 
@@ -66,5 +70,21 @@ public class ModeloCompras {
     public void setTotal(float total) {
         this.total = total;
     }
-    
+
+    public String getProductoNombre() {
+        return productoNombre;
+    }
+
+    public void setProductoNombre(String productoNombre) {
+        this.productoNombre = productoNombre;
+    }
+
+    public int getIdproducto() {
+        return idproducto;
+    }
+
+    public void setIdproducto(int idproducto) {
+        this.idproducto = idproducto;
+    }
+
 }

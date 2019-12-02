@@ -264,7 +264,8 @@ public class ControladorCompras implements KeyListener{
          if (Compras.idCompras.getText().isEmpty()||
                  Compras.precioUnitario.getText().isEmpty()||
                  Compras.cantidadProducto.getText().isEmpty()||
-                 Compras.fecha.getText().isEmpty()) {
+                 Compras.fecha.getText().isEmpty()||
+                 Compras.total.getText().isEmpty()) {
              return false;// algun os campos estan vacios
          }else{
              return true;// todos los campos estan llenos
@@ -273,9 +274,10 @@ public class ControladorCompras implements KeyListener{
      private void llenarModeloConVista(){
          ModeloCompras.setIdCompras(Integer.parseInt(Compras.idCompras.getText()));
          ModeloCompras.setPrecioUnitario(Float.parseFloat(Compras.precioUnitario.getText()));
-         ModeloCompras.setCantidad(Float.parseFloat(Compras.cantidadProducto.getText()));
+         ModeloCompras.setCantidad((int) Float.parseFloat(Compras.cantidadProducto.getText()));
          ModeloCompras.setFecha(Compras.fecha.getText());
          ModeloCompras.setTotal(Float.parseFloat(Compras.total.getText()));
+         ModeloCompras.setProductoNombre((String) Compras.SelectProductos.getSelectedItem());
      }
      
      private void llenarVistaConModelo(){
