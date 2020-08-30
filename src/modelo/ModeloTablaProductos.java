@@ -7,10 +7,7 @@ package modelo;
 
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author miria
- */
+
 public class ModeloTablaProductos {
     DefaultTableModel ModeloTabla = new DefaultTableModel();
     

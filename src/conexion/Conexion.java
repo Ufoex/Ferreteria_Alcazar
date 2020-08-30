@@ -4,25 +4,16 @@
 package conexion;
 import java.sql.*;
 import javax.swing.JOptionPane;
-/**
- *
- * @author miria
- */
 
 
 public class Conexion {
         //Datos necesarios que cambian de acuerdo a las necesidades de la aplicación
         //Cuan la comunicacion es lo local (LOCALHOST)
     private final String Servidor = "localhost"; //si es local = "localhost" 127.0.0.1
-    private final String Database = "ferreteriaalcazar";
+    private final String Database = "ferreteria";
     private final String Usuario = "root"; //si el servidor es con localhost = root
     private final String Password = ""; //si el servidor es con localhost = ""
 
-    //Cuando la comunicacion es remota (otra maquina como servidor)
-    //private final String Servidor = "10.225.204.219"; //si es local = "localhost"
-    //private final String Database = "tiendita";
-    //private final String Usuario = "zeus"; //si el servidor es con localhost = root
-    //private final String Password = "hola123"; //si el servidor es con localhost = ""
 
     //Datos necesarios
     private final String Puerto = "3306"; //Es el puerto definido para MySQL

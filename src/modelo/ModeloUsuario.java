@@ -3,10 +3,6 @@
  */
 package modelo;
 
-/**
- *
- * @author miria
- */
 public class ModeloUsuario {
     //atributos
     private String nombre, apellidopaterno, apellidomaterno, sexo, fechaingreso, rfc, turno, colonia, calle, usuario, password;

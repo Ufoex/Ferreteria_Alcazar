@@ -17,9 +17,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- * @author denis
- */
+
 public class ConsultasCompras extends Conexion {
     //todas las consultas deben ser de tipo boolean para saber si estan bien o no, con el true o false
 
@@ -69,7 +67,7 @@ public class ConsultasCompras extends Conexion {
         Connection Con = getConexion();
         try {
             PreparedStatement Ps;
-            String Sql = "delete from compras where idcompras = ?";
+            String Sql = "delete from compras where idcompra = ?";
             Ps = Con.prepareCall(Sql);
             Ps.setInt(1, Modelo.getIdCompras());
             Ps.execute();
@@ -127,12 +125,14 @@ public class ConsultasCompras extends Conexion {
         Connection Con = getConexion();
         try {
             PreparedStatement PS;
-            String Sql = "update compras set precio_unitario = ?, cantidad_precio set = ?, fecha set = ?, total set = ? where idcompras = ? "; //una llave primaria no se puede actualizar
+            String Sql = "UPDATE `compras` SET  `precio_unitario` = ?, `cantidad_producto` = ?, `fecha` = ?, `total` = ? WHERE `compras`.`idcompra` = ?"; //una llave primaria no se puede actualizar
             PS = Con.prepareCall(Sql);
-            PS.setFloat(1, Modelo.getPrecioUnitario());
-            PS.setInt(2, Modelo.getCantidad());
-            PS.setString(3, Modelo.getFecha());
-            PS.setFloat(4, Modelo.getTotal());
+            PS.setInt(1,Modelo.getIdproducto());
+            PS.setFloat(2, Modelo.getPrecioUnitario());
+            PS.setInt(3, Modelo.getCantidad());
+            PS.setString(4, Modelo.getFecha());
+            PS.setFloat(5, Modelo.getTotal());
+            //PS.setInt(6,Modelo.getIdCompras());
             PS.execute();
             return true;
         } catch (Exception e) {
@@ -143,7 +143,7 @@ public class ConsultasCompras extends Conexion {
                 Con.close();
                 System.out.println("Cerrando Conexión...");
             } catch (SQLException ex) {
-                Logger.getLogger(ConsultasProductos.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ConsultasCompras.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -166,7 +166,7 @@ public class ConsultasCompras extends Conexion {
                 Con.close();
                 System.out.println("Cerrando Conexión...");
             } catch (SQLException ex) {
-                Logger.getLogger(ConsultasProductos.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ConsultasCompras.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return products;

@@ -14,10 +14,7 @@ import modelo.ModeloProductos;
 import modelo.ModeloTablaProductos;
 import vista.TablaProducto;
 
-/**
- *
- * @author miria
- */
+
 public class ControladorBuscarProducto extends JFrame implements MouseListener, KeyListener {
     ModeloTablaProductos ModeloTabla = new ModeloTablaProductos();
     TablaProducto TablaProducto = new TablaProducto(new Frame(), true);

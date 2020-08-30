@@ -12,10 +12,7 @@ import vista.*;
 
 import javax.swing.*;
 
-/**
- *
- * @author Equipo sin nombre ahahhaa
- */
+
 public class ControladorVistaMenu {
     Menu Menu = new Menu();
     int x,y; //Para mover la ventana

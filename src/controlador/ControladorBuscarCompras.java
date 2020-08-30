@@ -20,9 +20,7 @@ import modelo.ModeloCompras;
 import modelo.ModeloTablaCompras;
 import vista.TablaCompras;
 
-/**
- * @author denis
- */
+
 public class ControladorBuscarCompras extends JFrame implements MouseListener, KeyListener {
     ModeloTablaCompras ModeloTabla = new ModeloTablaCompras();
     TablaCompras TablaCompras = new TablaCompras(new Frame(), true);
@@ -67,11 +65,11 @@ public class ControladorBuscarCompras extends JFrame implements MouseListener, K
         int FilaSeleccionada = TablaCompras.Tabla.getSelectedRow();
         if (FilaSeleccionada != -1) { //si  (no) selecciono algo de la tabla
             //Tomar lo que hay en la fila seleccionada
-            int idcompras = Integer.parseInt(ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 1).toString());
-            float precio_unitario = Float.parseFloat(ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 2).toString());
-            int cantidad_producto = Integer.parseInt(ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 3).toString());
-            String fecha = ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 4).toString();
-            float total = Float.parseFloat(ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 5).toString());
+            int idcompras = Integer.parseInt(ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 0).toString());
+            float precio_unitario = Float.parseFloat(ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 1).toString());
+            int cantidad_producto = Integer.parseInt(ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 2).toString());
+            String fecha = ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 3).toString();
+            float total = Float.parseFloat(ModeloTabla.getModeloTabla().getValueAt(FilaSeleccionada, 4).toString());
 
             //Lllenar el modelo con los datos de la fila
             ModeloCompras.setIdCompras(idcompras);

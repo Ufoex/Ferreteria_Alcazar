@@ -3,9 +3,7 @@
  */
 package modelo;
 
-/**
- * @author denis
- */
+
 public class ModeloCompras {
     private int IdCompras;
     private float precioUnitario;

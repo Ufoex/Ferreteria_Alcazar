@@ -13,10 +13,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Partida Castañeda
- */
+
 public class ConsultasVentas extends Conexion{
     //insertar datos a Ventas
     public boolean insertar(ModeloVentas Modelo){

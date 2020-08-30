@@ -11,10 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-/**
- *
- * @author miria
- */
+
 public class VistaLogin extends JFrame {
     public ImageIcon EyeOff = new ImageIcon(getClass().getResource("/imagenes/eye.png"));
     public ImageIcon Eye = new ImageIcon(getClass().getResource("/imagenes/eyeoff.png"));
@@ -44,11 +41,11 @@ public class VistaLogin extends JFrame {
     public void configIni(){
         this.setUndecorated(true);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.getContentPane().setBackground(new Color (247, 222, 181));
+        this.getContentPane().setBackground(new Color (43, 112, 249, 255));
         this.setSize(500, 480);
         this.setLayout(null);
         this.setLocationRelativeTo(null);
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/imagenes/logo - copia.png")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/imagenes/icono.jpg")));
 
     }
 
@@ -57,9 +54,9 @@ public class VistaLogin extends JFrame {
         //Barra
         this.TxtUsuario.setBounds(150, 200, 200, 30);
         this.TxtUsuario.setVisible(true);
-        this.TxtUsuario.setBackground(new Color(54,54,54));
-        this.TxtUsuario.setForeground(Color.white);
-        this.TxtUsuario.setCaretColor(Color.WHITE);
+        this.TxtUsuario.setBackground(new Color(35, 123, 249));
+        this.TxtUsuario.setForeground(Color.black);
+        this.TxtUsuario.setCaretColor(Color.black);
         this.add(TxtUsuario);
         //Texto
         this.LblUsuario.setBounds(127, 205, 24, 24);
@@ -70,9 +67,9 @@ public class VistaLogin extends JFrame {
         //Barra de Password
         this.TxtPassword.setBounds(150, 270, 200, 30);
         this.TxtPassword.setVisible(true);
-        this.TxtPassword.setForeground(Color.WHITE);
-        this.TxtPassword.setCaretColor(Color.WHITE);
-        this.TxtPassword.setBackground(new Color(54,54,54));
+        this.TxtPassword.setForeground(Color.black);
+        this.TxtPassword.setCaretColor(Color.black);
+        this.TxtPassword.setBackground(new Color(43, 112, 249));
         this.add(TxtPassword);
         //Texto
         this.LblPassword.setBounds(127, 272, 24, 24);
@@ -86,8 +83,12 @@ public class VistaLogin extends JFrame {
 
         //Boton de Login
         //Boton
-        this.BtnLogin.setBounds(325, 310, 24, 24);
+        this.BtnLogin.setBounds(325, 310, 40, 40);
         this.BtnLogin.setVisible(true);
+        this.BtnLogin.setOpaque(false);
+        this.BtnLogin.setBorder(null);
+        BtnLogin.setContentAreaFilled(false);
+        BtnLogin.setBorderPainted(false);
         this.BtnLogin.setForeground(Color.BLACK);
         this.add(BtnLogin);
         //Texto
@@ -97,7 +98,6 @@ public class VistaLogin extends JFrame {
 
         //Boton Salir
         BtnCerrar.setBounds(432, 10, 48, 48);
-        this.BtnCerrar.setVisible(true);
         this.BtnCerrar.setVisible(true);
         this.BtnCerrar.setOpaque(false);
         this.BtnCerrar.setBorder(null);

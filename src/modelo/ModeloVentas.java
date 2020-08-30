@@ -3,10 +3,7 @@ Constructos, getters y setters
  */
 package modelo;
 
-/**
- *
- * @author Partida Castañeda
- */
+
 public class ModeloVentas {
     private int IdVentas;
     private String Fecha;

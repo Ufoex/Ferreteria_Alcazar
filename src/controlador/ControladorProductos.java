@@ -15,9 +15,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-/**
- *
- */
+
 public class ControladorProductos implements KeyListener{
     //Sirven para agregar las vistas y los controladores por separado
     Productos Productos = new Productos();//Cambiar a mayuscula

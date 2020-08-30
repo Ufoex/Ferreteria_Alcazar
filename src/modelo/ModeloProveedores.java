@@ -6,7 +6,7 @@ public class ModeloProveedores {
     private String apellidoPaterno;
     private String apellidoMaterno;
     private String rfc;
-    private int telefono;
+    private String telefono;
     private String mail;
     private String estado;
     private String ciudad;
@@ -19,7 +19,7 @@ public class ModeloProveedores {
 
     }
 
-    public ModeloProveedores(int idProveedor, String nombre, String apellidoPaterno, String apellidoMaterno, String rfc, int telefono, String mail, String estado, String ciudad, int codigoPostal, String colonia, String calle, int numero) {
+    public ModeloProveedores(int idProveedor, String nombre, String apellidoPaterno, String apellidoMaterno, String rfc, String telefono, String mail, String estado, String ciudad, int codigoPostal, String colonia, String calle, int numero) {
         IdProveedor = idProveedor;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
@@ -75,11 +75,11 @@ public class ModeloProveedores {
         this.rfc = rfc;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 

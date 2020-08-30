@@ -15,10 +15,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-/**
- *
- * @author miria
- */
+
 public class Splash extends JFrame implements MouseListener, MouseMotionListener{
     ImageIcon ImGif = new ImageIcon(getClass().getResource("/imagenes/splash/Splash.gif"));
     JLabel LblImagen = new JLabel(ImGif);
@@ -28,7 +25,7 @@ public class Splash extends JFrame implements MouseListener, MouseMotionListener
         agregarEtiquetas();
         agregarOyentes();       
         this.setVisible(true);
-        //Matar al gato
+        //Matar al dato
         matarSplash();
         
     }

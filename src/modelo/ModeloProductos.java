@@ -3,10 +3,7 @@
  */
 package modelo;
 
-/**
- *
- * @author miria
- */
+
 public class ModeloProductos {
     private int idProductos;
     private String nombre;

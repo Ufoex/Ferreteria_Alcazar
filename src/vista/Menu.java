@@ -55,7 +55,7 @@ public class Menu extends JFrame {
         this.setResizable(false);
         this.setTitle("Ferreteria Alcazar");
         //this.setSize(869,428);
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/imagenes/logo - copia.png")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/imagenes/icono.jpg")));
         imgFondo.setIcon(new ImageIcon(getClass().getResource("/imagenes/fondo/fondoMenu.jpg")));
         this.setContentPane(imgFondo);
         this.pack();
@@ -65,38 +65,38 @@ public class Menu extends JFrame {
     private void agregarTextos() {
         //Atributos de Texto Menu
         txtMenu.setFont(new Font("Tahoma",0,36)); //Formato de la letra
-        txtMenu.setBounds(390,10,90,36);       //Ubicacion y tamaño
+        txtMenu.setBounds(10,10,90,36);       //Ubicacion y tamaño
         this.add(txtMenu);
 
         //Atributos Empleados
         //Texto
         txtEmpleados.setFont(new Font("Tahoma",1,16));
-        txtEmpleados.setBounds(72,210,100,20);
+        txtEmpleados.setBounds(122,210,100,20);
         this.add(txtEmpleados);
 
         //Atributos Proveedores
         //Texto
         txtProveedores.setFont(new Font("Tahoma",1,16));
-        txtProveedores.setBounds(232,210,120,20);
+        txtProveedores.setBounds(302,210,120,20);
         this.add(txtProveedores);
 
         //Atributos Productos
         //Texto
         txtProductos.setFont(new Font("Tahoma",1,16));
-        txtProductos.setBounds(392,210,120,20);
+        txtProductos.setBounds(492,210,120,20);
         this.add(txtProductos);
 
         //Atributos Ventas
         //Texto
         txtVentas.setFont(new Font("Tahoma",1,16));
-        txtVentas.setBounds(57,440,120,15);
+        txtVentas.setBounds(157,440,120,15);
         this.add(txtVentas);
 
 
         //Atributos Compras
         //Texto
         txtCompras.setFont(new Font("Tahoma",1,16));
-        txtCompras.setBounds(217,440,120,15);
+        txtCompras.setBounds(417,440,120,15);
         this.add(txtCompras);
 
 
@@ -107,7 +107,7 @@ public class Menu extends JFrame {
         //Atributos Empleados
         this.add(empleados);
         empleados.setVisible(true);
-        empleados.setBounds(30,50,175,161);
+        empleados.setBounds(80,50,175,161);
         this.empleados.setOpaque(false);
         this.empleados.setBorder(null);
         empleados.setContentAreaFilled(false);
@@ -117,7 +117,7 @@ public class Menu extends JFrame {
         //Atributos Proveedores
         this.add(proveedores);
         proveedores.setVisible(true);
-        proveedores.setBounds(190,50,175,161);
+        proveedores.setBounds(260,50,175,161);
         this.proveedores.setOpaque(false);
         this.proveedores.setBorder(null);
         proveedores.setContentAreaFilled(false);
@@ -127,7 +127,7 @@ public class Menu extends JFrame {
         //Atributos Productos
         this.add(productos);
         productos.setVisible(true);
-        productos.setBounds(350,50,175,161);
+        productos.setBounds(450,50,175,161);
         this.productos.setOpaque(false);
         this.productos.setBorder(null);
         productos.setContentAreaFilled(false);
@@ -137,7 +137,7 @@ public class Menu extends JFrame {
         //Atributos Ventas
         this.add(ventas);
         ventas.setVisible(true);
-        ventas.setBounds(10,270,175,161);
+        ventas.setBounds(110,270,175,161);
         this.ventas.setOpaque(false);
         this.ventas.setBorder(null);
         ventas.setContentAreaFilled(false);
@@ -148,7 +148,7 @@ public class Menu extends JFrame {
         //Atributos Compras
         this.add(compras);
         compras.setVisible(true);
-        compras.setBounds(170,270,175,161);
+        compras.setBounds(370,270,175,161);
         this.compras.setOpaque(false);
         this.compras.setBorder(null);
         compras.setContentAreaFilled(false);

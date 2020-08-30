@@ -62,7 +62,7 @@ public class Productos extends JFrame{
         this.setResizable(false);
         this.setTitle("Ferreteria Alcazar");
         //this.setSize(869,428);
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/imagenes/logo - copia.png")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/imagenes/icono.jpg")));
         imgFondo.setIcon(new ImageIcon(getClass().getResource("/imagenes/fondo/fondo.jpg")));
         this.setContentPane(imgFondo);
         this.pack();

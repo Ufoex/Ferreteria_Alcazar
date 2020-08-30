@@ -303,7 +303,7 @@ public class ControladorProveedores implements KeyListener {
         ModeloProveedores.setApellidoPaterno(Proveedores.apellidoPaterno.getText());
         ModeloProveedores.setApellidoMaterno(Proveedores.apellidoMaterno.getText());
         ModeloProveedores.setRfc(Proveedores.rfc.getText());
-        ModeloProveedores.setTelefono(Integer.parseInt(Proveedores.telefono.getText()));
+        ModeloProveedores.setTelefono(Proveedores.telefono.getText());
         ModeloProveedores.setMail(Proveedores.mail.getText());
         ModeloProveedores.setEstado(Proveedores.estado.getText());
         ModeloProveedores.setCiudad(Proveedores.ciudad.getText());

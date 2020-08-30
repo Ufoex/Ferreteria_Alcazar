@@ -70,7 +70,7 @@ public class Empleados extends JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.setTitle("Ferreteria Alcazar");
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/imagenes/logo - copia.png")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/imagenes/icono.jpg")));
         imgFondo.setIcon(new ImageIcon(getClass().getResource("/imagenes/fondo/fondoEmpleados.png")));
         this.setContentPane(imgFondo);
         this.pack();

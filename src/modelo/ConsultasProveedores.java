@@ -25,7 +25,7 @@ public class ConsultasProveedores extends Conexion{
             PS.setString(3, Modelo.getApellidoPaterno());
             PS.setString(4,Modelo.getApellidoMaterno());
             PS.setString(5,Modelo.getRfc());
-            PS.setInt(6,Modelo.getTelefono());
+            PS.setString(6,Modelo.getTelefono());
             PS.setString(7, Modelo.getMail());
             PS.setString(8, Modelo.getEstado());
             PS.setString(9, Modelo.getCiudad());
@@ -117,7 +117,7 @@ public class ConsultasProveedores extends Conexion{
             PS.setString(2,Modelo.getApellidoPaterno());
             PS.setString(3,Modelo.getApellidoMaterno());
             PS.setString(4,Modelo.getRfc() );
-            PS.setInt(5,Modelo.getTelefono());
+            PS.setString(5,Modelo.getTelefono());
             PS.setString(6, Modelo.getMail());
             PS.setString(7,Modelo.getEstado());
             PS.setString(8,Modelo.getCiudad());

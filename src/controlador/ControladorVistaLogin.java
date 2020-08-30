@@ -17,9 +17,7 @@ import modelo.ConsultasUsuario;
 import modelo.ModeloUsuario;
 import vista.VistaLogin;
 
-/**
- *
- */
+
 public class ControladorVistaLogin implements MouseListener {
      // crear el Objeto modelo y el objeto vista
 
@@ -177,7 +175,7 @@ public class ControladorVistaLogin implements MouseListener {
         String Pas = new String(VistaLogin.TxtPassword.getPassword());
         
         //solo para ver cual es el usuario incriptado
-        //System.out.println(encriptarPassword(Pas));
+        System.out.println(encriptarPassword(Pas));
         
         ModeloUsuario.setPassword(encriptarPassword(Pas));
         
@@ -196,7 +194,8 @@ public class ControladorVistaLogin implements MouseListener {
     private String encriptarPassword(String SinEncriptar) throws NoSuchAlgorithmException{
         MessageDigest Md = MessageDigest.getInstance("MD5");
         Md.update(SinEncriptar.getBytes(),0,SinEncriptar.length());
-        return new BigInteger(1,Md.digest()).toString(16);  
+        return new BigInteger(1,Md.digest()).toString(16);
+
     }
 
     private void ClickBotonUsuario(){

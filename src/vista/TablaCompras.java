@@ -1,6 +1,4 @@
-/*
-tablita
- */
+
 package vista;
 
 import java.awt.Color;
@@ -12,10 +10,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
-/**
- *
- * @author denis
- */
+
 public class TablaCompras extends Dialog{
     //Imagen de fondo
     public JLabel imgFondo = new JLabel();

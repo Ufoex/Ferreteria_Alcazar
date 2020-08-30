@@ -1,14 +1,10 @@
 package vista;
 
-import javafx.scene.control.ComboBox;
 import modelo.ConsultasCompras;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+
 
 public class Compras extends JFrame {
 //    Objetos
@@ -68,7 +64,7 @@ public class Compras extends JFrame {
         this.setResizable(false);
         this.setTitle("Ferreteria Alcazar");
         //this.setSize(869,428);
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/imagenes/logo - copia.png")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/imagenes/icono.jpg")));
         imgFondo.setIcon(new ImageIcon(getClass().getResource("/imagenes/fondo/fondo.jpg")));
         this.setContentPane(imgFondo);
         this.pack();

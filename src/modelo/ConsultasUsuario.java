@@ -10,10 +10,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-/**
- *
- * @author miria
- */
+
 public class ConsultasUsuario extends Conexion{
     public boolean buscar(ModeloUsuario Modelo){
         //Consultar (ExecuteQuery);
